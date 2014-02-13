@@ -1,0 +1,17 @@
+/**
+ * This file should get overwritten if Method 1 is used. If Method 2 is chosen,
+ * remove this comment and start adding your styles to this file.
+ */
+ #sidebar {
+	float: left;
+	width: 200px;
+	background: #c2b3c6;
+  -ms-transform:rotate(270deg); /* IE 9 */
+  -moz-transform:rotate(270deg); /* Firefox */
+  -webkit-transform:rotate(270deg); /* Safari and Chrome */
+  -o-transform:rotate(270deg); /* Opera */
+	}
+	
+body {
+    padding-top: 0px;
+}
