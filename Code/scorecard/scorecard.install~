@@ -1,0 +1,133 @@
+<?php
+
+/**
+ * Implements hook_uninstall().
+ *
+ * It's good to clean up after ourselves
+ */
+function scorecard_uninstall() {
+  db_drop_table('scorecard');
+}
+
+/**
+ * Implements hook_schema().
+ */
+function scorecard_schema() {
+  
+  $schema['scorecard'] = array(
+    'description' => 'Stores scorecard items.',
+    'fields' => array(
+      'pid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary key: Unique scorecard item'
+      ),
+      'name' => array(
+        'description' => 'The type (bundle) of this task.',
+        'type' =>'varchar',
+        'length' => 255, 
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'uid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => FALSE,
+        'default' => NULL,
+        'description' => "the {users}.uid of the associated user.",
+      ),
+      'polname' => array(
+        'description' => 'Politician',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+      ),
+      'party'    => array(
+        'description' => 'Party',
+        'type' => 'varchar',
+        'length' => 25,
+        'not null' => FALSE,
+      ),
+      'questions' => array(
+        'description' => '# Qsts',
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'answers' => array(
+        'description' => '# Ans',
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'comments' => array(
+        'description' => 'Comments',
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'rating' => array(
+        'description' => 'rating',
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'score' => array(
+        'description' => 'score', 
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),
+      'support' => array(
+        'description' => 'support',
+        'type' => 'int',
+        'length' => 10,
+        'not null' => FALSE,
+      ),      
+    ),
+    'indexes' => array(
+      'uid' => array('uid'),
+    ),
+    'foreign keys' => array(
+      'uid' => array('users' => 'uid'),
+      'name' => array('scorecard_type' => 'name'),
+    ),
+    'primary key' => array('pid'),
+  ); 
+  
+
+  $schema['scorecard_type'] = array(
+    'description' => 'Pre Calculated Scorecard data ready for display',
+    'fields' => array(
+      'polid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'name' => array(
+        'description' => 'The machine-readable name of this entity_test type.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+      ),
+      'label' => array(
+        'description' => 'The human-readable name of this entity_test type.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'description' => array(
+        'description' => 'A brief description of this type.',
+        'type' => 'text',
+        'not null' => TRUE,
+        'size' => 'medium',
+        'translatable' => TRUE,
+      ),
+    ) + entity_exportable_schema_fields(),
+    'primary key' => array('polid'),
+    'unique keys' => array(
+      'name' => array('name'),
+    ),
+  );
+  return $schema;
+}

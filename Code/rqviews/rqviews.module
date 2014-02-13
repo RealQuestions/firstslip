@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the rqviews feature.
+ */
+
+include_once 'rqviews.features.inc';

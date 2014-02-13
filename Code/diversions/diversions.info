@@ -1,0 +1,5 @@
+name = RQ System Diversions
+description = Custom Diversions for workflow out-fitting. All Specific to RealQuestions
+package =  Real Questions
+core = 7.x
+;files[] = form_example.test

@@ -1,0 +1,140 @@
+<?php
+
+
+/*function diversions_form_alter(&$form, $form_state, $form_id) {
+  //print $form_id ."|"; // Debug, Comment out in Production
+
+  //print_r ($GLOBALS['language']);
+  $language = $form['language']['#value']; // future use, internatioanalisation
+  // Include the CTools tools that we need.
+  ctools_include('ajax');
+  ctools_include('modal');
+
+  // Add CTools' javascript to the page.
+  ctools_modal_add_js();
+  switch ($form_id) {
+    case 'answers_node_form':
+      print  arg(3);
+      $form['field_question_nr'][$language]['#default_value']= arg(3);
+    break;
+  }
+}
+
+*/
+
+ function diversions_menu()
+  {
+    $items['yourquestions'] = array(
+        'title' => 'Your Questions',
+        //'type' => 'MENU_NORMAL_ITEM',
+        'description' => 'A Users Individual Questions and site interactions, easily accessible',
+        'page callback' => '_yourquestions',
+        'page arguments' => array(1),
+	     'access callback' => 'role_access',
+    	'access arguments' => array(array('authenticated user')),
+        'expanded' => TRUE
+    );
+
+    return $items;
+  }
+
+function role_access($roles) {
+  global $user;
+  foreach($roles as $role) {
+    if(in_array($role,$user->roles)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function _yourquestions($arg1) {
+
+	global $user;
+	$output = 'Welcome, '. $user->name . '<br><br>';
+	
+	$link .= l('Start a Real Question', 'node/add/questions', array('attributes' => array('class' => 'btn btn-alert')));
+	$output .= $link;
+	$output .= '<hr> Or Browse through your listing below<br><br>';
+	
+	return $output;
+}
+
+
+function diversions_node_access($node, $op, $account) {
+
+    if (is_object($node) && $node->type == "answers" && $op == 'update')
+    {
+        //print_r ($node->workbench_moderation['current']->published);
+
+        if ($node->workbench_moderation['current']->published == 1)
+        {
+            return NODE_ACCESS_DENY;
+        }
+     }
+} 
+
+function diversions_username_alter(&$name, $account) {
+
+	/**
+	* Highlight verfied politicians */
+    $user = user_load($account->uid);
+
+    if (in_array('politicians', $user->roles)) {
+
+	$profile = profile2_load_by_user($account, 'politicians');
+
+	if ($profile) {
+ 	    $verified = $profile->field_verified[LANGUAGE_NONE][0]['value'];
+	    //if (($user->roles[4] == 'politicians') && ($user->status == 1)) {
+    	if ($verified == 1) {
+	    	$name = ' ✓✓ ' . $user->name ;
+	    }
+	}
+
+    }
+	
+}
+
+function diversions_node_view_alter(&$build) {
+
+    if ($build['links']['comment']['#links']) {
+           $commenticon='<span class="label">Comment<i class="icon-large icon-comment"></i></span>';
+             //$commentdel='<i class="icon-trash"></i>';
+    // we hate the ugly "add comment, Glyphs here we come -- needs the bootstrap theme
+    $build['links']['comment']['#links']['comment-add']['title'] =$commenticon;
+    $build['links']['comment']['#links']['comment-add']['html'] = 1;
+    
+    //$build['links']['comment']['#links']['comment-add']['title'] =$commentdel;
+    
+    }
+}
+
+/*
+ Form_alters: this is voodoo stuff
+ */
+function diversions_form_alter(&$form, &$form_state, $form_id) {
+
+	//print_r ($form_id);
+	switch($form_id) {
+		case 'answers_node_form';
+			if (isset($form['#node']) && $form_id == $form['#node']->type .'_node_form') {
+    			$form['#after_build'][] = 'answers_after_build';                          
+			}  
+			break;
+		default:
+			return;
+	}
+}
+
+function answers_after_build($form, &$form_state) {
+
+	$field = 'field_question_nr';
+
+ 	$form[$field]['und']['#attributes']['disabled'] = 'disabled';
+ 	$form[$field]['und']['#disabled'] = TRUE;
+ 	$form_state['values'][$field]['und'][0]['value'] = $form[$field]['und'][0]['value']['#default_value'];
+ 	return $form;
+}
+
+

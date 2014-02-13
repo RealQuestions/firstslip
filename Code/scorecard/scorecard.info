@@ -1,0 +1,8 @@
+name = scorecard
+description = Scorecard System, using a collection of pre-built views & custom logic
+package =  Real Questions
+core = 7.x
+
+;files[] = scorecard.test
+
+

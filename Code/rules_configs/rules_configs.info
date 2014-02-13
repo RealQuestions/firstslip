@@ -1,0 +1,7 @@
+name = Rules configs
+description = Rules for RQ
+core = 7.x
+package = Real Questions
+version = 7.x-0.5
+project = rules_configs
+features[features_api][] = api:1

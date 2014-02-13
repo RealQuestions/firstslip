@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Quick tabs feature.
+ */
+
+include_once 'quick_tabs.features.inc';

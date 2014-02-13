@@ -1,0 +1,156 @@
+<?php
+/* 
+Licensed under GPLv2. See Copyright.txt.
+
+Merge Two Content Types  into a single unit. For RealQuestions <http://www.realquestions.net.au>
+Copyright (C) 2013  Erle Pereira <erle@erlepereira.com>
+ 
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+ 
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
+
+global $languge;
+
+function  merge_qstans_menu()
+{
+ /*   $items['australianpoliticians'] = array(
+        'title' => 'Politicians',
+        'description' => 'Politician Pages for Search, and Info display',
+        'page callback' => 'merge_qstans_loader',
+        'page arguments' => array(1),
+        'access callback' => TRUE, // This makes the item ALWAYS accessible
+        'expanded' => TRUE
+     );
+     
+     return $items;
+*/
+}
+
+function merge_qstans_node_view($node, $view_mode, $langcode)
+{
+ /*   if ($node->type=='answers' && $node->field_question_nr[LANGUAGE_NONE][0]['nid']) {
+        // Pick up the question & url
+         print_r ($node->field_question_nr[LANGUAGE_NONE][0]['nid']);
+     }
+*/
+	global $user;
+	
+	//print_r ($user);
+    switch ($node->type){
+        case 'answers': // Keep both cases separate for later evaluation, we might want to separate the functionality later on
+            if ($view_mode == 'full' && !in_array("politicians", $user->roles)) { 
+                drupal_goto ('node/'. $node->field_question_nr[LANGUAGE_NONE][0]['nid']);            
+             }
+//            elseif ($view_mode == 'full' && !in_array("politicians", $user->roles)) {
+//               drupal_goto ('node/'. $node->field_question_nr[LANGUAGE_NONE][0]['nid']);
+//             }
+        break;
+        }
+
+}
+
+/*function merge_qstans_user_view($acccount, $view_mode, $langcode) {
+   print_r ($account);
+}*/
+ 
+function merge_qstans_loader($arg1)
+{
+
+//    $arg1= NULL; //unused for now
+    $text = "The problem with troubleshooting is that trouble shoots back. $arg1";
+    $sampledata = '1234,5678';
+        
+    $variables = array(
+        'textvalue' => $text,
+        'sampleinfo' => $sampledata
+        );
+    //  drupal_theme_rebuild();        
+    return theme('merge_qstans', array('output' => $variables));
+}
+    
+function merge_qstans_theme($existing, $type, $theme, $path)
+{
+    
+    return array(
+        'merge_qstans' => array(
+            'template'=> 'merge_qstans',
+            'path' => drupal_get_path('module','merge_qstans') . '/theme',
+            'variables' => array(
+                'text' => NULL,
+                'sampleinfo' => NULL,
+             )
+          )
+     );    
+}
+
+// The All Important Answers Block
+function merge_qstans_block_info() {
+    $blocks['answerthis'] = array(
+        'info' => t('Answer this'),
+        'cache' => DRUPAL_CACHE_PER_ROLE, // default
+        'types' => array('questions'),	
+        );
+        
+    return $blocks;  
+}
+
+function merge_qstans_block_view($delta = '') {
+    switch($delta) {
+        case 'answerthis':
+            $block['content'] = ansdetails($delta);
+//              $block['content'] = "answers";
+        break;
+    }
+
+    return $block;
+}
+
+function ansdetails($block) {
+
+    //$user = user_load($account->uid);
+    global $user;
+    
+    $ansbody = "";
+    if (is_numeric(arg(1))) {
+    
+    	$value = arg(1);   
+    
+    	// Question Already Answered ? -- good display it
+    	$viewans = views_get_view('answers', FALSE); // default, false: use cache
+    	$viewans->set_arguments(array( $value ));
+    	$viewans->set_display('block_1');
+    	$viewans->execute();
+    
+    if (count($viewans->result) > 0) { //Already answered
+      $node = node_load($viewans->result[0]->nid);
+      $anstitle = $node->title . ' on ' . format_date($node->created);
+      $ansbody = field_view_field('node', $node, "body"); // TODO: Theme highlight the answers 
+    }
+    else {
+        // Are we a polictian ?
+	    if (in_array("politicians", $user->roles)){    
+	        //$politicianflag = 1;
+	        $ansbody = l('Answer This Question','node/add/answers', array('query' => array('edit[field_question_nr][und]'=> $value), 'attributes' => array('class' => 'alert alert-error')));
+	        }
+	     else {
+			 drupal_set_message(t('This has not been answered yet, add your support to encourage an answer'), 'status');
+	     }
+    }
+  }  
+    return $ansbody;
+
+}
+
+

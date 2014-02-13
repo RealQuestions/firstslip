@@ -1,0 +1,14 @@
+name = Quick tabs
+description = all Quick Tabs Settings
+core = 7.x
+package = Real Questions
+version = 7.x-0.5
+project = quick_tabs
+dependencies[] = ctools
+dependencies[] = quicktabs
+features[ctools][] = quicktabs:quicktabs:1
+features[features_api][] = api:1
+features[quicktabs][] = my_questions
+features[quicktabs][] = politicians_qsts
+features[quicktabs][] = real_talk
+features[quicktabs][] = top_20

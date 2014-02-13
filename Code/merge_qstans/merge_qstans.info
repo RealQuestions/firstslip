@@ -1,0 +1,4 @@
+name = merge_qstans
+description = Merge Questions and Answer  Display for Realquestions
+package = Real Questions
+core = 7.x
