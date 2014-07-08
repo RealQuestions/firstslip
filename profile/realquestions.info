@@ -1,0 +1,66 @@
+name = RealQuestions Australia
+core = 7.x
+description = FirstSlip codebase of the RealQuestions Engine & Website
+
+; Core
+dependencies[] = contact
+dependencies[] = contextual
+dependencies[] = field_ui
+dependencies[] = number
+dependencies[] = php
+dependencies[] = update
+cd
+
+; Contrib
+dependencies[] = admin_menu_toolbar
+dependencies[] = date_popup
+dependencies[] = date_views
+dependencies[] = features
+dependencies[] = feed_import
+dependencies[] = feeds_tamper
+dependencies[] = content_taxonomy
+dependencies[] = multiupload_filefield_widget
+dependencies[] = flag_actions
+dependencies[] = maillog
+dependencies[] = imce
+dependencies[] = advanced_forum
+dependencies[] = complete_profile
+dependencies[] = elements
+dependencies[] = menu_token
+dependencies[] = pathauto
+dependencies[] = prepopulate
+;dependencies[] = profile2_page
+dependencies[] = quicktabs_tabstyles
+dependencies[] = taxonomy_autocomplete_settings
+dependencies[] = globalredirect 
+dependencies[] = boost
+dependencies[] = boost_crawler
+dependencies[] = rules
+dependencies[] = custom_search
+dependencies[] = custom_search_blocks
+dependencies[] = custom_search_taxonomy   
+dependencies[] = subscriptions_ui
+dependencies[] = subscriptions_mail
+dependencies[] = subscriptions_taxonomy
+dependencies[] = subscriptions_blog_ui
+dependencies[] = tf_context
+dependencies[] = tf_dynamic
+dependencies[] = tf_multi
+dependencies[] = ckeditor
+;dependencies[] = hybridauth
+dependencies[] = jquery_update
+dependencies[] = views_bootstrap
+dependencies[] = views_data_export
+dependencies[] = views_ui
+dependencies[] = workbench
+dependencies[] = workbench_moderation
+
+;Custom
+;dependencies[] = rq_flags
+dependencies[] = merge_qstans
+dependencies[] = quick_tabs
+dependencies[] = diversions
+dependencies[] = rqviews
+dependencies[] = scorecard
+
+
