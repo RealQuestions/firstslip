@@ -30,7 +30,6 @@ dependencies[] = menu_token
 dependencies[] = pathauto
 dependencies[] = prepopulate
 ;dependencies[] = profile2_page
-dependencies[] = quicktabs_tabstyles
 dependencies[] = taxonomy_autocomplete_settings
 dependencies[] = globalredirect 
 dependencies[] = boost

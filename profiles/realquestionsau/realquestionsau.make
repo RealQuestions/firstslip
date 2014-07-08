@@ -101,24 +101,6 @@ projects[prepopulate][version] = "2.x-dev"
 projects[profile2][subdir] = "patched"
 projects[profile2][version] = "1.3"
 
-; Please fill the following out. Type may be one of get, git, bzr or svn,
-; and url is the url of the download.
-projects[quick_tabs][download][type] = ""
-projects[quick_tabs][download][url] = ""
-projects[quick_tabs][type] = "module"
-projects[quick_tabs][subdir] = "realquestions"
-projects[quick_tabs][version] = "0.5"
-
-projects[quicktabs][version] = "3.6"
-
-; Please fill the following out. Type may be one of get, git, bzr or svn,
-; and url is the url of the download.
-projects[rqviews][download][type] = ""
-projects[rqviews][download][url] = ""
-projects[rqviews][type] = "module"
-projects[rqviews][subdir] = "realquestions"
-projects[rqviews][version] = "1.0-beta2"
-
 projects[rules][version] = "2.6"
 
 projects[shield][version] = "1.2"
@@ -156,6 +138,8 @@ projects[widgets][version] = "1.0-rc1"
 projects[workbench][version] = "1.2"
 
 projects[workbench_moderation][version] = "1.3"
+
+projects[quicktabs][version] = "7.x-3.6"
 
 ; Themes
 projects[bootstrap][version] = "3.0"
