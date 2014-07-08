@@ -15,18 +15,22 @@ and
 
 git http://git-scm.com
 
-1. clone this repository
-~~~~~~~~~~~~~~~~~~~~~~~~
-    git clone https://github.com/RealQuestions/firstslip.git
-
-2. Enter the "firstslip" directory and run
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    drush make profiles/realquestionsau/build-realquestionsau.make
-
-Then all you need to do is visit the drupal site via your browser and choose "RealQuestions Australia". Follow the rest of the instructions to install the site. This leaves the bootstap theme enabled as default. We have also provided the RealQuestions theme (a subtheme of bootstrap)
-
 
 make sure to run 'rqcontenttypes' first to get the content types installed, then switch the rest on.
+
+Clone the Repository
+```
+git clone https://github.com/RealQuestions/firstslip.git
+```
+
+Enter the "firstslip" directory and run 
+
+```
+drush make profiles/realquestionsau/build-realquestionsau.make
+```
+
+
+Then all you need to do is visit the drupal site via your browser and choose "RealQuestions Australia". Follow the rest of the instructions to install the site. This leaves the bootstap theme enabled as default. We have also provided the RealQuestions theme (a subtheme of bootstrap)
 
 
 This is structured to allow future codebases, newer releases of Drupal, and other ports to other frameworks.
