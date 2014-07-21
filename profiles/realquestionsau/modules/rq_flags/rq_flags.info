@@ -1,0 +1,13 @@
+name = RQ Flags
+description = RealQuestion Flags
+core = 7.x
+package = Real Questions
+php = 5.2.4
+version = 7.x-0.1-beta
+project = rq_flags
+dependencies[] = flag
+features[features_api][] = api:1
+features[flag][] = bookmarks
+features[flag][] = like
+features[flag][] = page_feedback
+features[flag][] = reportthiscomment

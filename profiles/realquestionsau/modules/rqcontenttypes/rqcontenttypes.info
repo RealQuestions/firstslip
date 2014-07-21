@@ -1,7 +1,7 @@
 name = RQContentTypes
 description = Content Types Created for Real questions
 core = 7.x
-package = Features
+package = Real Questions
 version = 7.x-1.0-beta1
 project = rqcontenttypes
 dependencies[] = date

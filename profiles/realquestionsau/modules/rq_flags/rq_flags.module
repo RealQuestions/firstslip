@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the RQ Flags feature.
+ */
+
+include_once 'rq_flags.features.inc';

@@ -1,0 +1,34 @@
+# Ignore configuration files that may contain sensitive information.
+sites/*/settings*.php
+
+# Ignore paths that contain user-generated content.
+sites/*/files
+sites/*/private
+CHANGELOG.txt
+COPYRIGHT.txt
+.htaccess
+INSTALL.mysql.txt
+INSTALL.pgsql.txt
+INSTALL.sqlite.txt
+INSTALL.txt
+LICENSE.txt
+MAINTAINERS.txt
+README.txt
+UPGRADE.txt
+authorize.php
+cron.php
+includes/
+index.php
+install.php
+misc/
+modules/
+profiles/minimal/
+profiles/standard/
+profiles/testing/
+robots.txt
+scripts/
+sites/
+themes/
+update.php
+web.config
+xmlrpc.php
