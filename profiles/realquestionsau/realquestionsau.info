@@ -55,7 +55,8 @@ dependencies[] = workbench
 dependencies[] = workbench_moderation
 
 ;Custom
-;dependencies[] = rq_flags
+dependencies[] = rqcontenttypes
+dependencies[] = rq_flags
 dependencies[] = merge_qstans
 dependencies[] = quick_tabs
 dependencies[] = diversions

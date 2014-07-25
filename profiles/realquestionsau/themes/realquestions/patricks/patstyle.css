@@ -1,0 +1,170 @@
+h2 
+{
+    font-size:2em;
+    text-transform:none;
+    text-align:center;
+    color: #573d7d;
+} 
+
+.works
+{
+    font-size:2em;
+    text-transform:none;
+    text-align:center;
+    color:#242c32 ;
+} 
+
+
+
+        
+
+/* heroes */
+.black
+{
+    background:black;
+    padding:0px 0px 0px 0px;
+    
+}
+
+
+
+.form-control:
+{
+width:200px;
+}
+    
+.whitebg 
+{
+background-image: none;    
+background-color: white;
+}
+
+
+.tophero {
+    /* background-image:url(assets/top-hero-large.jpg);
+    background-repeat:no-repeat; */
+    margin-top:120px;
+    padding: 0px 0px 40px 0px;
+    min-height:300px;
+}
+
+.btn-lg {
+  padding: 10px 16px;
+  line-height: 1.33;
+  border-radius: 6px;
+  height:60px;
+  width:200px;   
+  font-size:1.2em;
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #357ebd;    
+    
+}
+
+       
+.scrollimation.scale-in{
+	opacity:0;
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	-ms-transform: scale(0.8);
+	transform:scale(0.8);
+	-webkit-transition: -webkit-transform .6s cubic-bezier(.17,.89,.67,1.57), opacity .6s ease-out;
+	transition: transform .6s cubic-bezier(.17,.89,.67,1.57), opacity .6s ease-out;
+}
+
+
+.fontawesome {
+    font-size:6em;
+    margin:70px 0px 30px 0px;
+    color: #573d7d;
+}
+    
+    
+.fontawesome:hover{
+	-webkit-transform: scale(1.4);
+	-moz-transform: scale(1.4);
+	-ms-transform: scale(1.4);
+	transform: scale(1.4);
+	opacity: 1;
+	transition: all 0.1s ease-out;
+    
+    
+}
+
+
+.btn-primary:hover{
+	-webkit-transform: scale(1.1);
+	-moz-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+	opacity: 1;
+	transition: all 0.1s ease-out;    
+}
+
+
+.byline {
+    color:#242c32;
+    margin:0px 20% 0px 20%;
+}
+
+.video-title {
+  color:white; 
+    z-index:1;
+    position:absolute; 
+    top:300px; 
+    width:100%; 
+}
+
+.question {
+    margin:5px 0px 30px 10px;
+    padding:0px 15px 0px 15px;
+    
+}
+
+.user {
+    height:40px;
+    width:40px;
+    margin:0px 5px 0px 0px;
+    float:left;
+    
+}
+
+#Info {
+padding-top:30px;
+}
+
+#QuestionFeed {
+    padding:30px 0px 30px 0px;
+}
+
+.align-center {
+    display:inline-block; 
+    vertical-align:middle;
+    height:auto;
+    margin-top:50px;
+
+}
+
+h5 {
+    line-height:1.5em;
+}
+
+h2 {
+    
+}
+
+h5 {
+    font-size:2em;
+}
+
+h5 {
+    
+}
+
+h5 {
+    font-size: 1.5em;
+}
+
+h4 {
+    color: black;
+}

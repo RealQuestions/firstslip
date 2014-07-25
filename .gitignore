@@ -28,7 +28,6 @@ profiles/testing/
 robots.txt
 scripts/
 sites/
-themes/
 update.php
 web.config
 xmlrpc.php

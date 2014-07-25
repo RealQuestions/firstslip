@@ -2,16 +2,294 @@
  * This file should get overwritten if Method 1 is used. If Method 2 is chosen,
  * remove this comment and start adding your styles to this file.
  */
- #sidebar {
-	float: left;
-	width: 200px;
-	background: #c2b3c6;
-  -ms-transform:rotate(270deg); /* IE 9 */
-  -moz-transform:rotate(270deg); /* Firefox */
-  -webkit-transform:rotate(270deg); /* Safari and Chrome */
-  -o-transform:rotate(270deg); /* Opera */
-	}
-	
-body {
-    padding-top: 0px;
+
+/** 
+ * Custom theme Styles: Patrick + Saurabh 
+ */
+
+h1, h2, a {color: #573d7d;}
+body {background: url('../icons/light_wool.png');}
+.tb-megamenu {
+    background-color: transparent;
+    }
+
+.container {
+    width: 95%;
+    }
+    
+.region-sidebar-first {
+    background: transparent;
+    }
+    
+#slidercontent_slider_source_2 {
+    height: 500px;
+    width: 700px;
+    border-width: 0;
+    }
+
+.sliderwrapper .contentdiv {
+    width: 85%;
+    }
+
+.pagination {
+  border-radius: 4px 4px 4px 4px;
+  display: inline-block;
+  padding-left: 0;
+  background-color: transparent;
+    }
+
+.views-slideshow-controls-bottom .views-slideshow-pager-field-item { 
+    float: left; 
+    margin: 20px 6px; 
+    }
+    
+.views-field-field-slider-image-1 {
+    display: none; 
+    }
+
+
+#imgtextoverlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #FECC04;
+    font-weight: bold;
+    height: 100%;
+    line-height: 12px;
+    margin-top: -100px;
+    max-height: 100px;
+    width: 600px;
+    padding: 5px;
+    position: absolute;
+    text-align: center;
+    text-shadow: 1px 1px 1px #000000;
+    width: 100%;
+    }
+
+ul.media-list li.media a.pull-left span.glyphicon {
+    font-size:100px; 
+    float:left;
+    width:20%;
+    color: grey;
+    margin-top: 15px;
+    }
+
+ul.media-list li.media div.media-body p {
+    font-size:18px; 
+    margin-top: 10px;
+    }
+
+.frontheader {
+    margin-top: 30px;
+	color:#fff;
+    }
+
+/* Action Button */
+.frontheaderwell {
+padding: 10px 16px;
+line-height: 1.33;
+border-radius: 6px;
+font-size: 1.2em;
+color: #ffffff;
+background-color: #573d7d;
+width:50%;
+height:150px;	
 }
+
+li.media .glyphicon {
+    color:#fff !important;
+    }
+li.media:hover .glyphicon, li.media.active-trail .glyphicon {
+    color:#1a7e73 !important;
+    } 
+
+
+.nav > li > a {
+    padding: 10px!important;
+}
+.navbar {background:#f0efff;}
+div.navbar-collapse.collapse {
+    margin-top: -30px;
+}
+
+.footer {
+    background-color: #f0efff;
+    color: #573d7d;
+    width: 100%;
+    margin-top: 0;
+    border-top:10px solid;
+    }
+
+.footer a:link,.footer a:visited {
+    color: #333;
+    font-weight: bold;
+    }
+
+.footer .nav > li > a:hover, .footer .nav > li > a:focus, .footer a:hover, .footer a:focus {
+    color: #E4E4E4;
+    background-color: transparent;
+    font-weight: bold;
+    text-decoration: none;
+    }
+
+.prefooter {
+    background-color: #f0efff;
+    color: #573d7d;
+    width: 100%;
+    margin-top: 30px;
+    }
+    
+.item-list > ul:nth-child(1) {
+    padding-left: 5px; 
+    }
+.social-icons { padding-top:40px;}
+.social-icons img {
+    background-color: #f0efff;
+    padding: 10px;
+    margin-top: 20px;
+	border: 2px solid #573d7d;
+    }
+.social-icons img:hover {
+    background-color:#1a7e73;
+	border: 2px solid #fff;
+    }
+.social-icons a {
+    padding:25px;
+    }
+.e-entry-content {
+    color: #d3d3d3;
+}
+.bloglist h3 {
+    font-size:20px; 
+    color:#1a7e73; 
+    font-weight:bold;
+	background: url('../icons/blogger.png') no-repeat;
+padding: 20px 75px;
+    }
+
+.bloglist ul {
+    list-style:none;
+    }
+.bloglist li a {
+    font-size:14px;
+    text-decoration: underline;
+    }
+.bloglist li a:hover,div.col-sm-4:nth-child(1) > a:nth-child(1) {
+    color:#1a7e73;
+    }
+    
+    
+    /* Parallax for Get Started,  config elements as PHP code in the page */
+#intro{
+	background:url(../images/firstBG.jpg) 50% 0 no-repeat fixed;
+	color: white;
+	height: 600px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#second{
+	background: url(../images/secondBG.jpg) 50% 0 no-repeat fixed;
+	color: black;
+	height: 1300px;
+	margin: 0 auto;
+	overflow: hidden;
+	padding: 0;
+}
+
+#second .bg{
+	background: url(../images/trainers.png) 50% 0 no-repeat fixed;
+	height: 1300px;
+	margin: 0 auto;
+	padding: 0;
+	position: absolute;
+	width: 900px;
+	z-index: 200;
+	background-position: center;
+}
+
+#third{
+	background: url(../images/thirdBG.jpg) 50% 0 no-repeat fixed;
+	color: black;
+	height: 650px;
+	padding: 100px 0 0 0;	
+}
+
+#fifth{
+	background: #ccc;
+	height: 400px;
+	margin: 0 auto;
+	padding: 40px 0 0 0;
+}
+
+#getstarted {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-top: -50px;
+}
+
+
+.cf-hidden { 
+    display: none; 
+    } 
+
+.cf-invisible { 
+    visibility: hidden; 
+    }
+
+#sv .sublimevideo-Label {
+    overflow:hidden!important;text-align:left!important;
+    } 
+
+#sv .sublimevideo-Button {
+    background:none!important;
+    border:none!important;
+    margin:0!important;
+    outline:none!important;
+    padding:0!important;
+    font-size:0!important;
+    line-height:0!important;
+    overflow:visible!important;
+    cursor:pointer!important;
+    } 
+
+#sv .sublimevideo-View {
+    -webkit-tap-highlight-color:rgba(0,0,0,0)!important;
+    display:block!important;
+    position:absolute!important;
+    text-shadow:none!important;
+    border:none!important;
+    z-index:auto!important;
+    } 
+
+#sv .sublimevideo-VideoView {
+    line-height:0!important;
+    background:black!important;
+    direction:ltr!important;
+    padding:0!important;
+    text-align:center!important;
+    -webkit-user-select:none!important;
+    -moz-user-select:none!important;
+    } 
+
+#sv .sublimevideo-VideoView * {
+    padding:0!important;
+    margin:0!important;
+    border:none!important;
+    overflow:visible!important;
+    background:none!important;
+    float:none!important;
+    z-index:auto!important;
+    -moz-border-radius:0!important;
+    -webkit-border-radius:0!important;
+    border-radius:0!important;
+    -moz-box-shadow:none!important;
+    -webkit-box-shadow:none!important;
+    box-shadow:none!important;
+    text-transform:none!important;
+    text-decoration:none!important;
+    max-width:none!important;
+    top:auto!important;
+    bottom:auto!important;
+    left:auto!important;
+    right:auto!important;
+    } 

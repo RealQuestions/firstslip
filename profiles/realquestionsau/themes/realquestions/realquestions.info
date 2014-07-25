@@ -15,6 +15,30 @@ regions[footer]         = 'Footer'
 
 ; Stylesheets
 stylesheets[all][] = css/style.css
+stylesheets[all][] = patricks/flexslider.css
+stylesheets[all][] = patricks/designr-theme-purple.css
+stylesheets[all][] = patricks/flipclock.css
+stylesheets[all][] = patricks/customstyles.css
+stylesheets[all][] = patricks/patstyle.css
+stylesheets[all][] = patricks/css.css
+stylesheets[all][] = patricks/font-awesome.css
+
+;Scripts
+scripts[] = patricks/www-widgetapi-vfldqBTcy.js
+scripts[] = patricks/iframe_api.js
+scripts[] = patricks/sa.js
+scripts[] = patricks/0yylvjqm_002.js
+scripts[] = patricks/undefined.asc
+scripts[] = patricks/modernizr.js
+scripts[] = patricks/jquery_004.js
+scripts[] = patricks/jquery_002.js
+scripts[] = patricks/twitterFetcher_v10_min.js
+scripts[] = patricks/jquery_003.js
+scripts[] = patricks/waypoints.js
+scripts[] = patricks/jquery_006.js
+scripts[] = patricks/jquery_005.js
+scripts[] = patricks/contact.js
+scripts[] = patricks/designr.js
 
 ;**********************************
 ; METHOD 1: Bootstrap Source Files
