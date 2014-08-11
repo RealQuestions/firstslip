@@ -46,11 +46,6 @@ function rqviews_views_default_views() {
   $handler->display->display_options['arguments']['field_question_nr_nid']['summary']['number_of_records'] = '0';
   $handler->display->display_options['arguments']['field_question_nr_nid']['summary']['format'] = 'default_summary';
   $handler->display->display_options['arguments']['field_question_nr_nid']['summary_options']['items_per_page'] = '25';
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = '1';
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -59,6 +54,13 @@ function rqviews_views_default_views() {
     'answers' => 'answers',
   );
   $handler->display->display_options['filters']['type']['group'] = '0';
+  /* Filter criterion: State Flow: State */
+  $handler->display->display_options['filters']['state']['id'] = 'state';
+  $handler->display->display_options['filters']['state']['table'] = 'node_revision_states';
+  $handler->display->display_options['filters']['state']['field'] = 'state';
+  $handler->display->display_options['filters']['state']['value'] = array(
+    'published' => 'published',
+  );
 
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block_1');
@@ -218,6 +220,148 @@ function rqviews_views_default_views() {
   /* Display: Context */
   $handler = $view->new_display('ctools_context', 'Context', 'ctools_context_1');
   $export['discussions'] = $view;
+
+  $view = new view();
+  $view->name = 'draftanswers';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'draftanswers';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'draftanswers';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['style_plugin'] = 'views_bootstrap_table_plugin_style';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'body' => 'body',
+    'field_question_nr' => 'field_question_nr',
+    'state' => 'state',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'body' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_question_nr' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'state' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['sticky'] = TRUE;
+  $handler->display->display_options['style_options']['bootstrap_styles'] = array(
+    'hover' => 'hover',
+    'condensed' => 'condensed',
+    'striped' => 0,
+    'bordered' => 0,
+  );
+  /* Relationship: Content: Question (field_question_nr) */
+  $handler->display->display_options['relationships']['field_question_nr_nid']['id'] = 'field_question_nr_nid';
+  $handler->display->display_options['relationships']['field_question_nr_nid']['table'] = 'field_data_field_question_nr';
+  $handler->display->display_options['relationships']['field_question_nr_nid']['field'] = 'field_question_nr_nid';
+  $handler->display->display_options['relationships']['field_question_nr_nid']['delta'] = '-1';
+  /* Field: Content: Question */
+  $handler->display->display_options['fields']['field_question_nr']['id'] = 'field_question_nr';
+  $handler->display->display_options['fields']['field_question_nr']['table'] = 'field_data_field_question_nr';
+  $handler->display->display_options['fields']['field_question_nr']['field'] = 'field_question_nr';
+  $handler->display->display_options['fields']['field_question_nr']['type'] = 'node_reference_plain';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Ans. Headline';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Body */
+  $handler->display->display_options['fields']['body']['id'] = 'body';
+  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
+  $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'Answer Text';
+  $handler->display->display_options['fields']['body']['type'] = 'text_summary_or_trimmed';
+  $handler->display->display_options['fields']['body']['settings'] = array(
+    'trim_length' => '200',
+  );
+  /* Field: State Flow: State */
+  $handler->display->display_options['fields']['state']['id'] = 'state';
+  $handler->display->display_options['fields']['state']['table'] = 'node_revision_states';
+  $handler->display->display_options['fields']['state']['field'] = 'state';
+  $handler->display->display_options['fields']['state']['label'] = 'Workflow State';
+  /* Sort criterion: Content: Post date */
+  $handler->display->display_options['sorts']['created']['id'] = 'created';
+  $handler->display->display_options['sorts']['created']['table'] = 'node';
+  $handler->display->display_options['sorts']['created']['field'] = 'created';
+  $handler->display->display_options['sorts']['created']['order'] = 'DESC';
+  /* Contextual filter: Content: User posted or commented */
+  $handler->display->display_options['arguments']['uid_touch']['id'] = 'uid_touch';
+  $handler->display->display_options['arguments']['uid_touch']['table'] = 'node';
+  $handler->display->display_options['arguments']['uid_touch']['field'] = 'uid_touch';
+  $handler->display->display_options['arguments']['uid_touch']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid_touch']['default_argument_type'] = 'current_user';
+  $handler->display->display_options['arguments']['uid_touch']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['uid_touch']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid_touch']['summary_options']['items_per_page'] = '25';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'answers' => 'answers',
+  );
+  /* Filter criterion: State Flow: State */
+  $handler->display->display_options['filters']['state']['id'] = 'state';
+  $handler->display->display_options['filters']['state']['table'] = 'node_revision_states';
+  $handler->display->display_options['filters']['state']['field'] = 'state';
+  $handler->display->display_options['filters']['state']['value'] = array(
+    'all' => 'all',
+    'draft' => 'draft',
+    'published' => 'published',
+    'unpublished' => 'unpublished',
+  );
+  $handler->display->display_options['filters']['state']['expose']['operator_id'] = 'state_op';
+  $handler->display->display_options['filters']['state']['expose']['label'] = 'State';
+  $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
+  $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
+  $handler->display->display_options['filters']['state']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+  );
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'draftanswers';
+  $export['draftanswers'] = $view;
 
   $view = new view();
   $view->name = 'intervieweeparty';
@@ -444,8 +588,35 @@ function rqviews_views_default_views() {
   $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['style_plugin'] = 'default';
-  $handler->display->display_options['row_plugin'] = 'node';
+  $handler->display->display_options['style_plugin'] = 'views_bootstrap_table_plugin_style';
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'body' => 'body',
+  );
+  $handler->display->display_options['style_options']['default'] = 'title';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'body' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['sticky'] = TRUE;
+  $handler->display->display_options['style_options']['bootstrap_styles'] = array(
+    'striped' => 0,
+    'bordered' => 0,
+    'hover' => 0,
+    'condensed' => 0,
+  );
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
   $handler->display->display_options['header']['area']['table'] = 'views';
@@ -467,24 +638,32 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  /* Field: Content: Body */
-  $handler->display->display_options['fields']['body']['id'] = 'body';
-  $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
-  $handler->display->display_options['fields']['body']['field'] = 'body';
+  /* Field: State Flow: State */
+  $handler->display->display_options['fields']['state']['id'] = 'state';
+  $handler->display->display_options['fields']['state']['table'] = 'node_revision_states';
+  $handler->display->display_options['fields']['state']['field'] = 'state';
+  $handler->display->display_options['fields']['state']['relationship'] = 'reverse_field_question_nr_node';
+  $handler->display->display_options['fields']['state']['label'] = 'Answer Status';
+  $handler->display->display_options['fields']['state']['empty'] = ' -- Not Enough support yet --';
+  /* Sort criterion: State Flow: State */
+  $handler->display->display_options['sorts']['state']['id'] = 'state';
+  $handler->display->display_options['sorts']['state']['table'] = 'node_revision_states';
+  $handler->display->display_options['sorts']['state']['field'] = 'state';
+  $handler->display->display_options['sorts']['state']['relationship'] = 'reverse_field_question_nr_node';
   /* Sort criterion: Content: Post date */
   $handler->display->display_options['sorts']['created']['id'] = 'created';
   $handler->display->display_options['sorts']['created']['table'] = 'node';
   $handler->display->display_options['sorts']['created']['field'] = 'created';
   $handler->display->display_options['sorts']['created']['order'] = 'DESC';
-  /* Contextual filter: Content: Author uid */
-  $handler->display->display_options['arguments']['uid']['id'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['table'] = 'node';
-  $handler->display->display_options['arguments']['uid']['field'] = 'uid';
-  $handler->display->display_options['arguments']['uid']['default_action'] = 'default';
-  $handler->display->display_options['arguments']['uid']['default_argument_type'] = 'current_user';
-  $handler->display->display_options['arguments']['uid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['uid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['uid']['summary_options']['items_per_page'] = '25';
+  /* Contextual filter: Content: User posted or commented */
+  $handler->display->display_options['arguments']['uid_touch']['id'] = 'uid_touch';
+  $handler->display->display_options['arguments']['uid_touch']['table'] = 'node';
+  $handler->display->display_options['arguments']['uid_touch']['field'] = 'uid_touch';
+  $handler->display->display_options['arguments']['uid_touch']['default_action'] = 'default';
+  $handler->display->display_options['arguments']['uid_touch']['default_argument_type'] = 'current_user';
+  $handler->display->display_options['arguments']['uid_touch']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['uid_touch']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['uid_touch']['summary_options']['items_per_page'] = '25';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -543,10 +722,10 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'My Answers ';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
 
   /* Display: profileqsts */
@@ -561,6 +740,10 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Content: Question (field_question_nr) - reverse */
+  $handler->display->display_options['relationships']['reverse_field_question_nr_node']['id'] = 'reverse_field_question_nr_node';
+  $handler->display->display_options['relationships']['reverse_field_question_nr_node']['table'] = 'node';
+  $handler->display->display_options['relationships']['reverse_field_question_nr_node']['field'] = 'reverse_field_question_nr_node';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Individual (field_userreference) */
   $handler->display->display_options['arguments']['field_userreference_uid']['id'] = 'field_userreference_uid';
@@ -574,13 +757,6 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['arguments']['field_userreference_uid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -597,10 +773,10 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'entity';
+  $handler->display->display_options['row_plugin'] = 'node';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Author uid */
@@ -858,14 +1034,14 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['fields']['log']['table'] = 'node_revision';
   $handler->display->display_options['fields']['log']['field'] = 'log';
   $handler->display->display_options['fields']['log']['exclude'] = TRUE;
-  /* Field: Workbench Moderation: Moderation history link */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['workbench_moderation_history_link']['id'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['table'] = 'node';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['field'] = 'workbench_moderation_history_link';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['relationship'] = 'vid';
   $handler->display->display_options['fields']['workbench_moderation_history_link']['exclude'] = TRUE;
   $handler->display->display_options['fields']['workbench_moderation_history_link']['hide_alter_empty'] = FALSE;
-  /* Field: Moderation State */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['state']['id'] = 'state';
   $handler->display->display_options['fields']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['state']['field'] = 'state';
@@ -874,8 +1050,7 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['fields']['state']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['state']['alter']['text'] = '<div>[state]</div><div>[workbench_moderation_history_link]</div>';
   $handler->display->display_options['fields']['state']['hide_alter_empty'] = FALSE;
-  $handler->display->display_options['fields']['state']['machine_name'] = 0;
-  /* Field: Workbench Moderation: Moderation links */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['moderation_actions']['id'] = 'moderation_actions';
   $handler->display->display_options['fields']['moderation_actions']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['fields']['moderation_actions']['field'] = 'moderation_actions';
@@ -942,7 +1117,7 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
   $handler->display->display_options['filters']['type']['expose']['remember'] = TRUE;
-  /* Filter criterion: Workbench Moderation: State */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['state']['id'] = 'state';
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['state']['field'] = 'state';
@@ -958,8 +1133,7 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
   $handler->display->display_options['filters']['state']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
-  /* Filter criterion: Workbench Moderation: Current */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['current']['id'] = 'current';
   $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['current']['field'] = 'current';
@@ -980,12 +1154,12 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['empty']['area']['format'] = 'plain_text';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Workbench Moderation: Current */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['current']['id'] = 'current';
   $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['current']['field'] = 'current';
   $handler->display->display_options['filters']['current']['value'] = '1';
-  /* Filter criterion: Workbench Moderation: State */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['state']['id'] = 'state';
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['state']['field'] = 'state';
@@ -1027,7 +1201,7 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
   $handler->display->display_options['filters']['type']['expose']['remember'] = TRUE;
-  /* Filter criterion: Workbench Moderation: Published */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['published']['id'] = 'published';
   $handler->display->display_options['filters']['published']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['published']['field'] = 'published';
@@ -1056,7 +1230,7 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['filters']['uid_current']['field'] = 'uid_current';
   $handler->display->display_options['filters']['uid_current']['relationship'] = 'uid';
   $handler->display->display_options['filters']['uid_current']['value'] = '1';
-  /* Filter criterion: Workbench Moderation: Current */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['current']['id'] = 'current';
   $handler->display->display_options['filters']['current']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['current']['field'] = 'current';
@@ -1082,7 +1256,7 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
   $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
   $handler->display->display_options['filters']['type']['expose']['remember'] = TRUE;
-  /* Filter criterion: Workbench Moderation: State */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['state']['id'] = 'state';
   $handler->display->display_options['filters']['state']['table'] = 'workbench_moderation_node_history';
   $handler->display->display_options['filters']['state']['field'] = 'state';
@@ -1096,7 +1270,6 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['filters']['state']['expose']['operator'] = 'state_op';
   $handler->display->display_options['filters']['state']['expose']['identifier'] = 'state';
   $handler->display->display_options['filters']['state']['expose']['remember'] = TRUE;
-  $handler->display->display_options['filters']['state']['expose']['reduce'] = TRUE;
   $handler->display->display_options['path'] = 'admin/workbench/drafts';
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'My Drafts';
@@ -1469,45 +1642,6 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'views_calc';
-  $handler->display->display_options['style_options']['columns'] = array(
-    'field_userreference' => 'field_userreference',
-    'field_parties' => 'field_parties',
-    'title' => 'title',
-  );
-  $handler->display->display_options['style_options']['default'] = 'field_userreference';
-  $handler->display->display_options['style_options']['info'] = array(
-    'field_userreference' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-      'has_calc' => 0,
-      'calc' => array(),
-    ),
-    'field_parties' => array(
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-      'has_calc' => 0,
-      'calc' => array(),
-    ),
-    'title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
-      'align' => '',
-      'separator' => '',
-      'empty_column' => 0,
-      'has_calc' => 1,
-      'calc' => array(
-        'COUNT' => 'COUNT',
-      ),
-    ),
-  );
-  $handler->display->display_options['style_options']['sticky'] = TRUE;
-  $handler->display->display_options['style_options']['detailed_values'] = '0';
-  $handler->display->display_options['style_options']['precision'] = '0';
   /* Relationship: Content: Individual (field_userreference) */
   $handler->display->display_options['relationships']['field_userreference_uid']['id'] = 'field_userreference_uid';
   $handler->display->display_options['relationships']['field_userreference_uid']['table'] = 'field_data_field_userreference';
@@ -1555,7 +1689,7 @@ If this is not a claimed ID, Your support for any questions asked will increase 
 
   /* Display: Defaults */
   $handler = $view->new_display('default', 'Defaults', 'default');
-  $handler->display->display_options['title'] = 'Top 20 Questions';
+  $handler->display->display_options['title'] = 'Top Questions jsonp';
   $handler->display->display_options['use_ajax'] = TRUE;
   $handler->display->display_options['use_more'] = TRUE;
   $handler->display->display_options['use_more_always'] = FALSE;
@@ -1564,67 +1698,47 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['query_comment'] = FALSE;
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'mini';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '20';
+  $handler->display->display_options['pager']['type'] = 'some';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '5';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
     'name' => 'name',
-    'created' => 'name',
+    'created' => 'created',
     'field_userreference' => 'field_userreference',
-    'title' => 'field_userreference',
+    'title' => 'title',
+    'field_vote' => 'field_vote',
     'count' => 'count',
+    'entity_id' => 'entity_id',
     'comment_count' => 'comment_count',
-    'entity_id' => 'comment_count',
-    'field_vote' => 'count',
   );
-  $handler->display->display_options['style_options']['default'] = 'count';
+  $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
     'name' => array(
-      'sortable' => 1,
+      'sortable' => 0,
       'default_sort_order' => 'asc',
-      'align' => 'views-align-left',
-      'separator' => ' on ',
-      'empty_column' => 0,
-    ),
-    'created' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => 'views-align-left',
-      'separator' => ' ',
-      'empty_column' => 0,
-    ),
-    'field_userreference' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => '',
-      'separator' => ', ',
-      'empty_column' => 0,
-    ),
-    'title' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'asc',
-      'align' => 'views-align-left',
-      'separator' => ' ',
-      'empty_column' => 0,
-    ),
-    'count' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'comment_count' => array(
-      'sortable' => 1,
-      'default_sort_order' => 'desc',
-      'align' => 'views-align-left',
-      'separator' => ', ',
+    'created' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
       'empty_column' => 0,
     ),
-    'entity_id' => array(
-      'align' => 'views-align-left',
+    'field_userreference' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
@@ -1635,9 +1749,26 @@ If this is not a claimed ID, Your support for any questions asked will increase 
       'separator' => '',
       'empty_column' => 0,
     ),
+    'count' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'entity_id' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'comment_count' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
   );
-  $handler->display->display_options['style_options']['sticky'] = TRUE;
-  $handler->display->display_options['style_options']['empty_table'] = TRUE;
   $handler->display->display_options['exposed_block'] = TRUE;
   /* Header: Global: Text area */
   $handler->display->display_options['header']['area']['id'] = 'area';
@@ -2018,6 +2149,60 @@ If this is not a claimed ID, Your support for any questions asked will increase 
   $handler->display->display_options['filters']['count']['value']['value'] = '1';
   $handler->display->display_options['filters']['count']['group'] = 1;
   $handler->display->display_options['block_description'] = 'Gaining support';
+
+  /* Display: JSON  Questions */
+  $handler = $view->new_display('page', 'JSON  Questions', 'page_1');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'views_json';
+  $handler->display->display_options['style_options']['plaintext_output'] = 1;
+  $handler->display->display_options['style_options']['remove_newlines'] = 0;
+  $handler->display->display_options['style_options']['jsonp_prefix'] = 'jsonCallback';
+  $handler->display->display_options['style_options']['using_views_api_mode'] = 0;
+  $handler->display->display_options['style_options']['object_arrays'] = 0;
+  $handler->display->display_options['style_options']['numeric_strings'] = 0;
+  $handler->display->display_options['style_options']['bigint_string'] = 0;
+  $handler->display->display_options['style_options']['pretty_print'] = 0;
+  $handler->display->display_options['style_options']['unescaped_slashes'] = 0;
+  $handler->display->display_options['style_options']['unescaped_unicode'] = 0;
+  $handler->display->display_options['style_options']['char_encoding'] = array();
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: User: Name */
+  $handler->display->display_options['fields']['name']['id'] = 'name';
+  $handler->display->display_options['fields']['name']['table'] = 'users';
+  $handler->display->display_options['fields']['name']['field'] = 'name';
+  $handler->display->display_options['fields']['name']['relationship'] = 'uid';
+  $handler->display->display_options['fields']['name']['label'] = 'By';
+  $handler->display->display_options['fields']['name']['element_label_colon'] = FALSE;
+  /* Field: Content: Post date */
+  $handler->display->display_options['fields']['created']['id'] = 'created';
+  $handler->display->display_options['fields']['created']['table'] = 'node';
+  $handler->display->display_options['fields']['created']['field'] = 'created';
+  $handler->display->display_options['fields']['created']['label'] = 'Posted On';
+  $handler->display->display_options['fields']['created']['date_format'] = 'custom';
+  $handler->display->display_options['fields']['created']['custom_date_format'] = 'd M';
+  /* Field: Content: Individual */
+  $handler->display->display_options['fields']['field_userreference_1']['id'] = 'field_userreference_1';
+  $handler->display->display_options['fields']['field_userreference_1']['table'] = 'field_data_field_userreference';
+  $handler->display->display_options['fields']['field_userreference_1']['field'] = 'field_userreference';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Question';
+  $handler->display->display_options['fields']['title']['alter']['max_length'] = '150';
+  $handler->display->display_options['fields']['title']['alter']['trim'] = TRUE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Tag */
+  $handler->display->display_options['fields']['entity_id']['id'] = 'entity_id';
+  $handler->display->display_options['fields']['entity_id']['table'] = 'field_data_field_category';
+  $handler->display->display_options['fields']['entity_id']['field'] = 'field_category';
+  $handler->display->display_options['fields']['entity_id']['label'] = 'Tags';
+  $handler->display->display_options['fields']['entity_id']['hide_alter_empty'] = FALSE;
+  $handler->display->display_options['fields']['entity_id']['delta_offset'] = '0';
+  $handler->display->display_options['path'] = 'questionsfeed';
   $export['top20qst'] = $view;
 
   return $export;

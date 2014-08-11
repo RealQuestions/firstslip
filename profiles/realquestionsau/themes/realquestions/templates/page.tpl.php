@@ -117,7 +117,8 @@
       endif;?>
       <a id="main-content"></a>
       <?php print render($title_prefix); ?>
-      <?php if (!empty($title) && $show_title): ?>
+      <?php #if (!empty($title) && $show_title): ?>
+      <?php if (!empty($title)): ?>
         <h3 class="page-header"><?php print $title; ?></h3>
       <?php endif; ?>
       <?php print render($title_suffix); ?>
