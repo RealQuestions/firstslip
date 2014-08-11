@@ -24,15 +24,20 @@ stylesheets[all][] = patricks/css.css
 stylesheets[all][] = patricks/font-awesome.css
 
 ;Scripts
-scripts[] = patricks/www-widgetapi-vfldqBTcy.js
-scripts[] = patricks/iframe_api.js
-scripts[] = patricks/sa.js
-scripts[] = patricks/0yylvjqm_002.js
+;scripts[] = scripts/angular.js
+scripts[] = scripts/jquery.bootstrap.wizard.min.js
+scripts[] = scripts/realquestions.js
+;scripts[] = scripts/promise-tracker.js
+
+;scripts[] = patricks/www-widgetapi-vfldqBTcy.js
+;scripts[] = patricks/iframe_api.js
+;scripts[] = patricks/sa.js
+;scripts[] = patricks/0yylvjqm_002.js
 scripts[] = patricks/undefined.asc
 scripts[] = patricks/modernizr.js
 scripts[] = patricks/jquery_004.js
 scripts[] = patricks/jquery_002.js
-scripts[] = patricks/twitterFetcher_v10_min.js
+;scripts[] = patricks/twitterFetcher_v10_min.js
 scripts[] = patricks/jquery_003.js
 scripts[] = patricks/waypoints.js
 scripts[] = patricks/jquery_006.js

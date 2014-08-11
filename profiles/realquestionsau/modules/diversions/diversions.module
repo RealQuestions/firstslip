@@ -42,12 +42,23 @@ function _yourquestions($arg1) {
 
 function diversions_node_access($node, $op, $account) {
 
+    //print_r (state_flow_node_revision_status($node));
+    /**
+     * Drupal iterates thru the bloody array, if published ensure $node->status is set
+     *
+     * This is a performance glitch. Acceptable for now, consider low level of answers. Needs better logic here
+     */
+    if (state_flow_node_revision_status($node) == 'Published') { 
+        $node->status=1;
+        node_save($node);
+    }
+    
+    /* While edits are allowed for politician answers, it is only allowed until published */
     if (is_object($node) && $node->type == "answers" && $op == 'update')
     {
-        //print_r ($node->workbench_moderation['current']->published);
-
-        if ($node->workbench_moderation['current']->published == 1)
-        {
+        if ($node->status == 1)
+        {   
+            drupal_goto($node->nid);
             return NODE_ACCESS_DENY;
         }
      }
@@ -80,14 +91,16 @@ function diversions_node_view_alter(&$build) {
     if ($build['links']['comment']['#links']) {
            $commenticon='<span class="label">Comment<i class="icon-large icon-comment"></i></span>';
              //$commentdel='<i class="icon-trash"></i>';
-    // we hate the ugly "add comment, Glyphs here we come -- needs the bootstrap theme
-    $build['links']['comment']['#links']['comment-add']['title'] =$commenticon;
-    $build['links']['comment']['#links']['comment-add']['html'] = 1;
+            // we hate the ugly "add comment, Glyphs here we come -- needs the bootstrap theme
+            $build['links']['comment']['#links']['comment-add']['title'] =$commenticon;
+            $build['links']['comment']['#links']['comment-add']['html'] = 1;
     
-    //$build['links']['comment']['#links']['comment-add']['title'] =$commentdel;
+            //$build['links']['comment']['#links']['comment-add']['title'] =$commentdel;
     
     }
 }
+
+
 
 /*
  Form_alters: this is voodoo stuff
@@ -108,11 +121,12 @@ function diversions_form_alter(&$form, &$form_state, $form_id) {
 
 function answers_after_build($form, &$form_state) {
 
-	$field = 'field_question_nr';
+ 	$field = 'field_question_nr';
 
  	$form[$field]['und']['#attributes']['disabled'] = 'disabled';
  	$form[$field]['und']['#disabled'] = TRUE;
- 	$form_state['values'][$field]['und'][0]['value'] = $form[$field]['und'][0]['value']['#default_value'];
+
+// 	$form_state['values'][$field]['und'][0]['value'] = $form[$field]['und'][0]['value']['#default_value'];*/
  	return $form;
 }
 

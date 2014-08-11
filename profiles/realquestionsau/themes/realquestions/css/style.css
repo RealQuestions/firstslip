@@ -3,6 +3,73 @@
  * remove this comment and start adding your styles to this file.
  */
 
+#registrationwizard li.active {
+    width:100px;
+    height:100px;
+    display:block;
+   -webkit-border-radius: 99px;
+   -moz-border-radius: 99px;
+   border-radius: 99px;
+   border:0px;
+   background-color:#573D7D;
+   opacity: 1.0;
+   text-align: center;
+   font-size: 4em;
+}
+
+li.round-icon {
+    width:100px;
+    height:100px;
+    display:block;
+   -webkit-border-radius: 99px;
+   -moz-border-radius: 99px;
+   border-radius: 99px;
+   border:0px;
+   background-color:#573D7D;
+   opacity: 0.6;
+   text-align: center;
+   font-size: 3.2em;
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-sm-min) {
+li.round-icon {
+    width:50px;
+    height:50px;
+    display:block;
+}
+}
+
+
+.nav-pills > li.round-icon > a, .nav-pills > li.round-icon >  a:hover, .nav-pills > li.round-icon >  a:focus {
+    color: #FFF;
+    background-color: #573d7d;
+    background: transparent;
+
+}
+
+
+#GetStarted {
+    color:#242c32;
+    background-color:white;
+}
+
+#front-page-header {
+    background-image: url("http://en.clipdealer.com/preview/image/001/308/687/previews/5--1308687-Cheering%20Crowd%20Silhouettes%202.jpg");
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    /* background-color: rgba(131, 25, 25, 0.28); */
+    background-size: 100%;
+    /* opacity: 0.5; */
+    margin-top: -20px;
+    height: 400px;
+}
+
+
+#registrationwizard {
+    width: 65%;
+}
 /** 
  * Custom theme Styles: Patrick + Saurabh 
  */
@@ -172,10 +239,10 @@ padding: 20px 75px;
     font-size:14px;
     text-decoration: underline;
     }
-.bloglist li a:hover,div.col-sm-4:nth-child(1) > a:nth-child(1) {
+/*.bloglist li a:hover,div.col-sm-4:nth-child(1) > a:nth-child(1) {
     color:#1a7e73;
     }
-    
+*/    
     
     /* Parallax for Get Started,  config elements as PHP code in the page */
 #intro{

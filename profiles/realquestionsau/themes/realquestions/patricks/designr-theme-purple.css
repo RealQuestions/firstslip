@@ -208,7 +208,6 @@ body {
 
 #main-nav{
     background:transparent;
-    color:#fff;
     box-shadow:0 0 0px transparent;
     -webkit-transition:background 0.3s ease-out;
     transition:background 0.3s ease-out;
@@ -246,7 +245,6 @@ body {
     line-height:54px;
     font-weight:400;
     background:transparent;
-    color:#fff;
 }
 
 

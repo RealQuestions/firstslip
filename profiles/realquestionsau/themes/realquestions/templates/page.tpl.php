@@ -73,31 +73,32 @@
  * @ingroup themeable
  */
 ?>
-<header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
-  <div class="container">
-    <div class="navbar-header">
-      <?php if ($logo): ?>
-      <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-      </a>
-      <?php endif; ?>
+<div id="main-nav" class="<?php print $navbar_classes; ?>" role="navigation">
+    <div class=" container">
+       	<div class="navbar-header">
+    		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#site-nav">
+            <span class = "icon-bar"> </span> 
+            <span class ="icon-bar"> </span> 
+            <span class ="icon-bar"> </span> 
+             </button>
 
-      <?php if (!empty($site_name)): ?>
-      <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
-      <?php endif; ?>
+            <?php if (!empty($site_name)): ?>
+            <a class="navbar-brand scrollto" href="<?php print $front_page; ?>">
+            <?php print $site_name; ?></a > <?php endif; ?>
 
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
+            <?php if (!empty($logo)): ?>
+                <a href="<?php print $front_page; ?>" title=" <?php print t('Home'); ?> ">
+                <img src="<?php print $logo; ?> " alt="<?php print t('Home'); ?>" class="img-responsive img-fullwidth img-min-height-width-100" />
+                </a>
+            <?php endif; ?>
+            <?php if (!empty($site_slogan)): ?>
+                <p class=" lead "><?php print $site_slogan; ?></p>
+            <?php endif; ?>
+
+        </div> <!--navbar-header-->
 
     <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
-      <div class="navbar-collapse collapse">
-        <nav role="navigation">
+      <div id="site-nav" class="navbar-collapse collapse ">
           <?php if (!empty($primary_nav)): ?>
             <?php print render($primary_nav); ?>
           <?php endif; ?>
@@ -110,8 +111,34 @@
         </nav>
       </div>
     <?php endif; ?>
-  </div>
-</header>
+   
+
+      <?php if (!empty($breadcrumb)): print $breadcrumb; 
+      endif;?>
+      <a id="main-content"></a>
+      <?php print render($title_prefix); ?>
+      <?php if (!empty($title) && $show_title): ?>
+        <h3 class="page-header"><?php print $title; ?></h3>
+      <?php endif; ?>
+      <?php print render($title_suffix); ?>
+      <?php print $messages; ?>
+        <?php if (!empty($page['help'])): ?>
+        <div class=" well "><?php print render($page['help']); ?></div>
+      <?php endif; ?>
+      <?php if (!empty($action_links)): ?>
+        <ul class=" action-links "><?php print render($action_links); ?></ul>
+      <?php endif; ?>
+
+	
+	    	</div>
+	    </div>
+    </div>
+
+  <header role="banner" id="front-page-header">
+    <?php print render($page['header']); ?>
+    <?php print render($page['highlighted']); ?>     
+ 
+  </header> <!-- /#header -->
 
 <div class="main-container container">
 

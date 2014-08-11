@@ -59,7 +59,7 @@
 	    </div>
     </div>
 
-  <header role="banner" id="page-header">
+  <header role="banner" id="front-page-header">
     <?php print render($page['header']); ?>
     <?php print render($page['highlighted']); ?>
         
@@ -74,8 +74,8 @@
                 <center><h2>REAL POLITICANS, REAL ANSWERS</h2>   
                 <p class=" byline ">Ask politicians questions that matter to you. Real Questions provides a platform for people to ask effective questions, and show the extent of user support for them.    
                 </p> 
-                <a href="#Info">
-                <button type = "button" class = "btn btn-primary btn-lg" style ="margin-top:50px;" > How it works </button> </a>  
+                <a href="#QuestionFeed"><button type="button" class="btn btn-primary btn-lg" style ="margin-top:50px;" > How it works </button> </a>  
+                <a href="#GetStarted"><button type="button" class="btn btn-primary btn-lg" style="margin-top:50px;">Get Started</button></a>>
                   </center> 
                   </div>
 
@@ -87,7 +87,7 @@
   </header> <!-- /#header -->
 
 
-  <div class="main-container container">
+  <div class="main-container container background"  style="background-color:#f7f7f7;">
   <div class = "row" >
 
   <?php # print $content_column_class; ?>
@@ -111,45 +111,31 @@
 
     </div>
 
-  <div id="replaceablepagecontent"> </div>
-
-         <section id="QuestionFeed" style="background-color:#f7f7f7;">
-            
-                <div class="container background">
-                    
-                    <!-- BLOCK with Dynamic View, 5 items, GRID -->
-                <h4>LATEST ACTIVITY</ h4 >
-
-  <div class="col-md-4 col-lg-4 row question"> <p> <strong> QUESTION </strong> <a>
-  @John Kaye </a> <i>
-"What policy measures would you support to ensure a reduction in alcohol fuelled violence and a safer nightlife?"
-  </i></p>
+    <section id="QuestionFeed">
+    <div class="row">
+    <?php $request = drupal_http_request($GLOBALS['base_url'] .'/questionsfeed?callback=jsonCallback');
+    $qresults = (drupal_json_decode($request->data)); ?>
+    <!-- parse & display feed from -- questionsfeed?callback=jsonCallback -->       
+  <div class="col-sm-3 col-md-3 col-lg-3 question"> 
+    <p> <strong> QUESTION </strong> <a>@ <?php print $qresults['nodes'][0]['node']['Individual']; ?> </a> <i><?php print $qresults['nodes'][0]['node']['Question']; ?></i></p>
   <span class="glyphicon glyphicon-user"></span> From
-  <a> SweetReason </a>, in <a> Culture, Health, Justice </a>
-
+  <a> <?php print $qresults['nodes'][0]['node']['By']; ?> </a>, in <a> <?php print $qresults['nodes'][0]['node']['Tags']; ?> </a>
   </div>
-           
-        
-          <div class="col-md-4 col-lg-4 row question">
-          <p><strong>ANSWER</strong > <a> @John Kaye </a> <i>
-"Why blame Mr Albanese for not building the Parra-Epping link when in truth the fault is NSW's?"
-  </i></p>
+                  
+  <div class="col-sm-4 col-md-4 col-lg-4 question">
+    <p> <strong> QUESTION </strong> <a>@ <?php print $qresults['nodes'][1]['node']['Individual']; ?> </a> <i><?php print $qresults['nodes'][1]['node']['Question']; ?></i></p>
   <span class="glyphicon glyphicon-user"></span> From
-  <a> Gladys Berejiklian </a>, in <a> Tranpsort </a>
+  <a> <?php print $qresults['nodes'][1]['node']['By']; ?> </a>, in <a> <?php print $qresults['nodes'][1]['node']['Tags']; ?> </a>
+  </div>
+  
+    <div class="col-sm-4 col-md-4 col-lg-4 question">
+              <p> <strong> QUESTION </strong> <a>@ <?php print $qresults['nodes'][2]['node']['Individual']; ?> </a> <i><?php print $qresults['nodes'][2]['node']['Question']; ?></i></p>
+  <span class="glyphicon glyphicon-user"></span> From
+  <a> <?php print $qresults['nodes'][2]['node']['By']; ?> </a>, in <a> <?php print $qresults['nodes'][2]['node']['Tags']; ?> </a>
 
   </div>
-        
-     
-        <div class="col-md-4 col-lg-4 row question">
-          <p><strong>QUESTION</strong > <a> @John Kaye </a> <i>
-"Why blame Mr Albanese for not building the Parra-Epping link when in truth the fault is NSW's?"
-  </i></p>
-<span class="glyphicon glyphicon-user"></span>
-  From <a> Gladys Berejiklian </a>, in <a> Tranpsort </a>
-
+  
   </div>
-        </div >
-
   </section>
 
 
@@ -162,9 +148,10 @@
     
   </div> </div>
 
-  <section id = "Info" style = "background-color:white;" >
+
 
   <div class="container">
+  <section id="Info" style="background-color:white;" >
     <h2 class="works"> HOW IT WORKS </h2> 
     <div class="row"> 
         <div class="col-mdn-8 offset2"> 
@@ -183,41 +170,43 @@
  that matter to you. Real Questions provides a platform for people to 
 ask effective questions, and show the extent of user support for them.</h5></span>   
          </div>  
-   </div>         
+   </div>
+
+    </section>
              
              <!-- 3 Steps -->
             <article>
                 <!-- Features blocks -->
+
+  <section id = "GetStarted"> 
+   <h2 class="works"> GET STARTED </h2>
                 <div class="row-fluid">
                     <div class="col-sm-4 col-md-4 col-lg-4 center-block">
-                         <span class="glyphicon glyphicon-pencil fontawesome scrollimation scale-in"></span>
-                        <h5 style="color:#242c32;">Sign Up</h5>
+                        <a href="user/register"> 
+                        <span class="glyphicon glyphicon-pencil fontawesome scale-in"></span>
+                        <h5>Sign Up</h5>
                         <p>Create your account and register.</p>
+                        </a>
                     </div>
                     <div class="col-sm-4 col-lg-4 center-block">
-                        <span class="glyphicon glyphicon-thumbs-up fontawesome scrollimation scale-in"></span>
-                        <h5 style="color:#242c32;">Get involved</h5>
+                        <a href="talk">
+                        <span class="glyphicon glyphicon-thumbs-up fontawesome scale-in"></span>
+                        <h5>Get involved</h5>
                         <p>View, rate and talk about posted questions. </p>
+                        </a>
                     </div>
                     <div class="col-sm-4 col-lg-4 center-block">
-                        <span class="glyphicon glyphicon-comment fontawesome scrollimation scale-in"></span>
-                        <h5 style="color:#242c32;">Ask a question</h5>
+                        <a href="node/add/questions">
+                        <span class="glyphicon glyphicon-comment fontawesome scale-in"></span>
+                        <h5>Ask a question</h5>
                         <p>Start asking politicans questions and gain points.</p>
+                        </a>
                     </div>
                 </div>
-                
-                
-                
-                <center>
-                 <button type="button" class="btn btn-primary btn-lg" style="margin-top:50px;">Get Started</button>
-                </center>
-                
-        </article></div><!-- End Container --> 
-                    
-		
-			
-        
         </section>
+                        
+        </article></div><!-- End Container --> 
+
         
 <footer class="prefooter container">
 	<div class="row clearfix">
@@ -228,12 +217,7 @@ ask effective questions, and show the extent of user support for them.</h5></spa
 		</div>
 
 		<div class="col-sm-4 col-md-4 column social-icons"> 
-		<a href="https://plus.google.com/108816489598835870606"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/icons/gplus.png" /></a>
-				<a href="https://www.facebook.com/RealQuestionsAustralia"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/icons/facebook.png" /></a>
-		<a href="https://www.linkedin.com/company/real-questions"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/icons/linkedin.png" /></a>
-		<a href="https://www.youtube.com/user/realquestionsoz"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/icons/youtube.png" /></a>
-    
-
+            <a href="https://realquestions.net.au/RQFlyer2013.pdf" target="_blank"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/images/flyericon_300.jpg" width="300" style="text-align: center;margin: 0 auto;display: block;"></a>
 
 		</div>
 		
@@ -242,17 +226,22 @@ ask effective questions, and show the extent of user support for them.</h5></spa
 		<?php echo views_embed_view('blogpreview', 'block'); ?>
     </div>
 </footer>
+
 <footer class="footer container">
 	<div class="row clearfix">
-		<div class="col-sm-3 col-md-3 column">
-Want to help?&nbsp;Like what we&#39;re up to? <a class="ajax-link" href="/content/volunteering-opportunities" rel="#replaceablepagecontent"><b>Volunteer with Us</b></a> 
+		<div class="col-sm-6 col-md-6 column">
+               <div class="region region-footer">
+                 <?php print render($page['footer']); ?>
+                </div>
 		</div>
-		<div class="col-sm-3 col-md-3 column">For a quick overview, Find more more, in our easy to read, <a href="https://realquestions.net.au/RQFlyer2013.pdf">downloadable flyer </a>
-		</div>
-		<div class="col-sm-3 col-md-3 column">For Australian politicians - You can <a href="claim-your-account">claim your account here</a>
-		</div>
-		<div class="col-sm-3 col-md-3 column">
-             <?php print render($page['footer']); ?>
-		</div>
-    </div>
+		
+		<div class="social-media-icons col-sm-6 col-md-6 column">
+				<a href="https://plus.google.com/108816489598835870606"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/icons/gplus.png" /></a>
+				<a href="https://www.facebook.com/RealQuestionsAustralia"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/icons/facebook.png" /></a>
+		<a href="https://www.linkedin.com/company/real-questions"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/icons/linkedin.png" /></a>
+		<a href="https://www.youtube.com/user/realquestionsoz"><img src="<?php print drupal_get_path('theme', 'realquestions'); ?>/icons/youtube.png" /></a>
+        </div>
+		
+    </div>    
+    
 </footer>
