@@ -1,0 +1,122 @@
+<?php
+
+function rq_register_form_user_register_form_alter(&$form, &$form_state, $form_id) {
+ 
+ $form['container'] = array(
+    '#type' => 'container',
+    '#weight' => 50,
+    '#attributes' => array('class' => array('tab-content')),
+    );
+ 
+ $form['container']['logindetails'] = array(
+    '#type' => 'container',
+    '#weight' => 50,
+    '#attributes' => array('class' => array('tab-pane')),
+    );
+  
+  /** the custom validate is important, we copy the data back at that step 
+  *     Don't assume the field values are taken right, we are changing the order with fieldsets
+  *     .. and profile2 might not get the additional data if we get too fancy here
+  *
+  *     Also, array_unshift ensures this triggers first before normal validate
+  */
+  //array_unshift($form['#validate'], 'copyregdataback');
+  
+  /* TAB 1 */
+  $form['container']['logindetails']['name'] = $form['account']['name'];
+  $form['container']['logindetails']['name']['#weight'] = 10;
+  $form['account']['name']['#type'] = 'hidden';
+  
+  $form['container']['logindetails']['field_firstname'] = &$form['profile_main']['field_firstname'];
+  $form['container']['logindetails']['field_firstname']['#weight'] = 20;
+  //$form['profile_main']['field_firstname']['#type'] = 'hidden';
+
+  $form['container']['logindetails']['field_lastname'] = &$form['profile_main']['field_lastname'];
+  $form['container']['logindetails']['field_lastname']['#weight'] = 30;
+  //$form['profile_main']['field_lastname']['#type'] = 'hidden';
+
+  $form['container']['logindetails']['mail'] = $form['account']['mail'];
+  $form['container']['logindetails']['mail']['#weight'] = 40;
+  $form['account']['mail']['#type'] = 'hidden';
+
+  $form['container']['logindetails']['field_newsletter'] = &$form['profile_main']['field_newsletter'];
+  $form['container']['logindetails']['field_newsletter']['#weight'] = 50;
+  //$form['profile_main']['field_newsletter']['#type'] = 'hidden';    
+ 
+  /* TAB 2 */
+  $form['container']['identify'] = array(
+    '#type' => 'container',
+    '#weight' => 55,
+    '#attributes' => array('class' => array('tab-pane')),
+  );
+  $form['container']['identify']['field_suburb'] = &$form['profile_main']['field_suburb'];
+  //$form['profile_main']['field_suburb']['#type'] = 'hidden';
+  
+  $form['container']['identify']['field_street'] = &$form['profile_main']['field_street'];
+  //$form['profile_main']['field_street']['#type'] = 'hidden';
+  
+  $form['container']['identify']['field_states'] = &$form['profile_main']['field_states'];
+  //$form['profile_main']['field_states']['#type'] = 'hidden';
+  $form['container']['identify']['field_postcode'] = &$form['profile_main']['field_postcode'];
+  //$form['profile_main']['field_postcode']['#type'] = 'hidden';
+  $form['container']['identify']['field_country'] = &$form['profile_main']['field_country'];
+  //$form['profile_main']['field_country']['#type'] = 'hidden';
+
+  
+  /* TAB 3 */
+  $form['container']['security'] = array(
+    '#type' => 'container',
+    '#weight' => 60,
+    '#attributes' => array('class' => array('tab-pane')),
+  );
+
+  $form['container']['security']['field_phones'] = &$form['profile_main']['field_phones'];
+  //$form['profile_main']['field_phones']['#type'] = 'hidden';
+  
+  $form['container']['security']['field_securityqst'] = &$form['profile_main']['field_securityqst'];
+  //$form['profile_main']['field_securityqst']['#type'] = 'hidden';
+  
+  $form['container']['security']['field_securityans'] = &$form['profile_main']['field_securityans'];
+  //$form['profile_main']['field_securityans']['#type'] = 'hidden';
+  
+  $form['container']['security']['actions'] = $form['actions'];
+  unset($form['actions']);
+
+  $form['profile_main']['#type'] = 'hidden'; 
+
+
+}
+
+function copyregdataback ($form, &$form_state) {
+
+  /* we only need to copy the profile2 data array back */
+  $form['profile_main']['field_firstname'] = $form['container']['logindetails']['field_firstname'];    
+    
+  $form['profile_main']['field_lastname'] = $form['container']['logindetails']['field_lastname'];
+
+  $form['profile_main']['field_newsletter'] = $form['container']['logindetails']['field_newsletter'];
+
+  $form['profile_main']['field_suburb'] = $form['container']['identify']['field_suburb'];
+  
+  $form['profile_main']['field_street'] = $form['container']['identify']['field_street'];
+
+  $form['profile_main']['field_states'] = $form['container']['identify']['field_states'];
+  
+  $form['profile_main']['field_postcode'] = $form['container']['identify']['field_postcode'];
+  
+  $form['profile_main']['field_country'] = $form['container']['identify']['field_country'];      
+
+  $form['profile_main']['field_phones'] = $form['container']['security']['field_phones'];
+
+  $form['profile_main']['field_securityqst'] = $form['container']['security']['field_securityqst'];
+  
+  $form['profile_main']['field_securityans'] = $form['container']['security']['field_securityans'];
+    
+  print_r ($form['profile_main']['field_firstname']);
+  
+/*  print_r ($form);
+  print_r ($form_state);
+  exit;*/
+  
+}
+

@@ -1,0 +1,9 @@
+name = RQ Answer Workflow
+description = Defines the workflow for the RealQuestions Answer System.
+package =  Real Questions
+core = 7.x
+version = 7.x-1.x
+
+dependencies[] = state_flow
+
+files[] = plugins/ans_workflow.inc

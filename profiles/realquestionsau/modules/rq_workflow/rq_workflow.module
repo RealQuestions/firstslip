@@ -1,0 +1,71 @@
+<?php
+
+/**
+ * Implements hook_permission().
+ */
+function rq_workflow_permission() {
+  return array(
+    'transition content to the approved state' => array(
+      'title' => t('Transition content to the approved state.'),
+      'description' => t('Allows user to transition nodes to the approved state defined in workflow.'),
+    ),
+    'transition content to the published or unpublished state' => array(
+      'title' => t('Transition content to the published or unpublished state.'),
+      'description' => t('Allows user to transition content to the published or unpublished state'),
+    ),
+  );
+}
+
+function rq_workflow_guard_approve($event) {
+  return rq_workflow_guard_permission($event, 'transition content to the approved state');
+}
+
+function rq_workflow_guard_publish($event) {
+  return rq_workflow_guard_permission($event, 'transition content to the published or unpublished state');
+}
+
+/**
+ * Helper function for evaluating an access decision with the global permission.
+ */
+function rq_workflow_guard_permission($event, $permission) {
+  // If the user has the global permission, then return TRUE
+  if (user_access($permission)) {
+    return TRUE;
+  }
+  // Otherwise, return FALSE
+  return FALSE;
+}
+
+
+/**
+ * Implements hook_state_flow_plugins().
+ */
+function rq_workflow_state_flow_plugins() {
+  $info = array();
+  $path = drupal_get_path('module', 'rq_workflow') . '/plugins';
+  $info['rq_workflow'] = array(
+    'handler' => array(
+      'parent' => 'state_flow',
+      'class' => 'rqWorkflow',
+      'file' => 'ans_workflow.inc',
+      'path' => $path,
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Alters the menu access callback for the node Workflow page.
+ */
+function rq_workflow_state_flow_menu_node_access_alter(&$access, $node, $account) {
+  $access = node_access('update', $node, $account);
+}
+
+/**
+ * rq_workflow_state_flow_machine_type_alter
+ */
+function rq_workflow_state_flow_machine_type_alter(&$machine_type, $node) {
+    if ($node->type == 'answers') {
+        $machine_type = "rq_workflow";
+    }
+}

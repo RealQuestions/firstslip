@@ -1,0 +1,5 @@
+name = Real Questions Registration
+project = rq_register
+description = Custom Registration for Real Questions
+package = Real Questions
+core = 7.x

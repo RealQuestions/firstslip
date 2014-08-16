@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the rqmenus feature.
+ */
+
+include_once 'rqmenus.features.inc';

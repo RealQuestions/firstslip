@@ -21,7 +21,7 @@ includes/
 index.php
 install.php
 misc/
-modules/
+#modules/
 profiles/minimal/
 profiles/standard/
 profiles/testing/
