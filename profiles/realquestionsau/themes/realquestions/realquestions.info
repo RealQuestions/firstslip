@@ -14,7 +14,6 @@ regions[sidebar_second] = 'Secondary'
 regions[footer]         = 'Footer'
 
 ; Stylesheets
-stylesheets[all][] = css/style.css
 stylesheets[all][] = patricks/flexslider.css
 stylesheets[all][] = patricks/designr-theme-purple.css
 stylesheets[all][] = patricks/flipclock.css
@@ -22,6 +21,7 @@ stylesheets[all][] = patricks/customstyles.css
 stylesheets[all][] = patricks/patstyle.css
 stylesheets[all][] = patricks/css.css
 stylesheets[all][] = patricks/font-awesome.css
+stylesheets[all][] = css/style.css
 
 ;Scripts
 ;scripts[] = scripts/angular.js

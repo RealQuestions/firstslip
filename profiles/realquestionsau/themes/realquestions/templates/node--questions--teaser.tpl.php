@@ -21,7 +21,7 @@
     hide($content['comments']);
     hide($content['links']);
     hide($content['field_tags']);
-    print "HE";
+
     print '<div class="well">'. render($content) . '</div>';
   ?>
 

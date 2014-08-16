@@ -1,47 +1,9 @@
-<header id="navbar" role="banner" class="<?php print $navbar_classes; ?>">
-  <div class="container">
-    <div class="navbar-header">
-      <?php if ($logo): ?>
-      <a class="logo navbar-btn pull-left" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-      </a>
-      <?php endif; ?>
-
-      <?php if (!empty($site_name)): ?>
-      <a class="name navbar-brand" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
-      <?php endif; ?>
-
-      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
-
-    <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
-      <div class="navbar-collapse collapse">
-        <nav role="navigation">
-          <?php if (!empty($primary_nav)): ?>
-            <?php print render($primary_nav); ?>
-          <?php endif; ?>
-          <?php if (!empty($secondary_nav)): ?>
-            <?php print render($secondary_nav); ?>
-          <?php endif; ?>
-          <?php if (!empty($page['navigation'])): ?>
-            <?php print render($page['navigation']); ?>
-          <?php endif; ?>
-        </nav>
-      </div>
-    <?php endif; ?>
-  </div>
-</header>
+<?php include('header.inc') ?>
 
 
-<div id="rootwizard" class="navbar">
+<div id="rootwizard" class="navbar tophero">
     <div class="navbar-inner">
-        <div class="container">
+        <div class="container ">
             <h2 class="title"><?php print $title; ?></h2>
            	<ul id="registrationwizard" class="nav nav-pills">
   	  	        <li class="round-icon"><a href="#edit-logindetails" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-user"></span></a></li>
@@ -54,7 +16,10 @@
     <?php print $messages; ?>
  		
     <div class="container">
+
         <div class="row"><div class="col-sm-8 col-md-8 col-lg-8">
+<em>Q: Why do I have to provide my name, address and phone number to register? </em><br>
+A: It is important that everybody contributing to the site is a real person, and that their contribution is valued equally. The scoring or voting of questions and comments on the site makes no sense if people can vote more than once. We ask for details so that we can check if necessary. (This information is confidential - see our <?php print l('Privacy Policy', 'content/privacy-policy')?>.)
         	<?php print render($page['content']); ?>	 
         	<ul class="pager wizard">
                 <!-- <li class="previous first"><a href="javascript:;">First</a></li> -->
@@ -82,7 +47,6 @@
 
 <!--             <a href="<?php print url('<front>'); ?>">&larr; Back <?php print $site_name; ?></a>-->    
 </div>
+</div>
 
-
-	
-
+<?php include('footer.inc') ?>

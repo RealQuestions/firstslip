@@ -89,7 +89,7 @@ function diversions_username_alter(&$name, $account) {
 function diversions_node_view_alter(&$build) {
 
     if ($build['links']['comment']['#links']) {
-           $commenticon='<span class="label">Comment<i class="icon-large icon-comment"></i></span>';
+           $commenticon='<span class="glyphicon glyphicon-comment label"> Comment</span>';
              //$commentdel='<i class="icon-trash"></i>';
             // we hate the ugly "add comment, Glyphs here we come -- needs the bootstrap theme
             $build['links']['comment']['#links']['comment-add']['title'] =$commenticon;

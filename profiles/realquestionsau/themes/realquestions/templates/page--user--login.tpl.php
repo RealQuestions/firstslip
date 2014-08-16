@@ -1,31 +1,48 @@
-<div id="auth_box" class="login">
-  <div id="top_part">
-    <h1 id="the_logo">
-      <img src="<?php print $logo; ?>" alt="<?php print $site_name; ?>">
-    </h1>
-  </div>
+<?php include('header.inc') ?>
 
-  <div id="middle_part">
-    <h2 class="title"><?php print $title; ?></h2>
-
-    <?php print $messages; ?>
-    
-    <?php print render($page['content']); ?>
-  </div>
-
-  <div id="bottom_part">
-    <div class="password_link">
-      <?php print l(t('Forgot your password?'), 'user/password'); ?>
-    </div>
-
-    <?php if (variable_get('user_register')): ?>
-    <div class="register_link">
-      <?php print l(t('Register a new account'), 'user/register'); ?>
-    </div>
+    <?php if (!empty($primary_nav) || !empty($secondary_nav) || !empty($page['navigation'])): ?>
+      <div class="navbar-collapse collapse">
+        <nav role="navigation">
+          <?php if (!empty($primary_nav)): ?>
+            <?php print render($primary_nav); ?>
+          <?php endif; ?>
+          <?php if (!empty($secondary_nav)): ?>
+            <?php print render($secondary_nav); ?>
+          <?php endif; ?>
+          <?php if (!empty($page['navigation'])): ?>
+            <?php print render($page['navigation']); ?>
+          <?php endif; ?>
+        </nav>
+      </div>
     <?php endif; ?>
-
-    <div class="back_link">
-      <a href="<?php print url('<front>'); ?>">&larr; Back <?php print $site_name; ?></a>
-    </div>
   </div>
+</header>
+ 		
+<div class="container tophero">
+        <h2 class="title"><?php print $title; ?></h2>
+    <div class="row">
+        <div class="col-sm-8 col-md-8 col-lg-8">
+            <?php print $messages; ?>
+        	<?php print render($page['content']); ?>	 
+        </div>
+
+    <div class="row">
+        <div class="col-sm-4 col-md-4">
+            <div class="thumbnail">
+              <div class="caption">
+                <h3>Not Registered ?</h3>
+                <p>Create a new account.<br><br><small>*Alternately, 'Recover Password' will mail a link to your pre-registered Email Address, allowing you to reset your password</small></p>
+            <p>
+            <?php print l(t('New account'), 'user/register', array('attributes' => array('class' => array('btn btn-default')), 'role' => array('button'))); ?>
+            <?php print l(t('Recover password'), 'user/password', array('attributes' => array('class' => array('btn btn-default')), 'role' => array('button'))); ?>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--             <a href="<?php print url('<front>'); ?>">&larr; Back <?php print $site_name; ?></a>-->    
 </div>
+</div>
+
+<?php include('footer.inc') ?>

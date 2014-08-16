@@ -2,6 +2,114 @@
  * This file should get overwritten if Method 1 is used. If Method 2 is chosen,
  * remove this comment and start adding your styles to this file.
  */
+footer .label {
+    background: #428BCA;
+}
+#homelogo {
+    display: inline-block;
+    height: 30px;
+    width: 350px;
+    ;margin-top: -50px;
+    margin-left: -30px;
+}
+.quicktabs_main.quicktabs-style-navlist {
+	background:#F8F8F8; 
+	border: 2px;
+	solid #573d7d;
+	}
+
+ul.quicktabs-tabs.quicktabs-style-navlist li.active a {
+	color:#fff;
+	}
+
+ul.quicktabs-tabs.quicktabs-style-navlist li.active {
+	background: #573d7d;
+	border: 0px;
+	}
+ 
+.lead {
+  color: #fff;
+  padding-top: 20px;
+} 
+#main-nav.scrolled .lead {
+  color: black;
+  margin-top: 0px;
+}
+.dropdown-menu {
+    background-color: #573D7D;
+} 
+#main-nav.scrolled .dropdown-menu {
+    background-color: #fff;
+}
+#main-nav .container{
+    padding:70px 20px;
+}
+
+#main-nav.scrolled .container{
+    padding: 30px 20px;
+}  
+#main-nav {
+    background:#573d7d url('../images/whitelogo.png') 20px 60px no-repeat fixed; 
+}
+#main-nav .nav a, #main-nav .nav a:active, #main-nav .nav a:hover {
+    color: #fff;
+}
+
+#main-nav.scrolled {
+    background:#fff url('../images/blacklogo.png') 20px 30px no-repeat fixed;
+}
+
+/*.navbar-default .navbar-nav>li>a, .navbar-header .lead {
+    color:#fff;
+}*/
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color:#1a7e73;
+}
+.navbar #block-search-form {
+    top:1em;
+}
+.navbar-nav {
+    float:right; 
+    margin-right:90px;
+}
+#main-nav .nav a {
+    padding:0px 10px !important;
+}
+
+
+#search-form {
+    display: none;
+}
+
+.navbar #block-search-form {
+    margin:0px;
+} 
+form#search-block-form {
+    margin: 0px;
+    width: 150px;
+}
+.menu-attach-block-wrapper {
+    display: inline;
+}
+.menu-attach-block-wrapper.orientation-horizontal .block {
+    background-color: #FFF;
+    position: absolute;
+    z-index: 400;
+    padding: 0;
+    top: 2em;
+}
+
+#front-page-header {
+    background-image: url("../images/realquestionsback.png");
+    background-position: 50% 80%;
+    background-repeat: no-repeat;
+    /* background-color: rgba(131, 25, 25, 0.28); */
+    background-size: 100%;
+    /* opacity: 0.5; */
+    margin-top: -20px;
+    height: 400px;
+}
+
 
 #registrationwizard li.active {
     width:100px;
@@ -16,7 +124,9 @@
    text-align: center;
    font-size: 4em;
 }
-
+#registrationwizard {
+    width: 65%;
+}
 li.round-icon {
     width:100px;
     height:100px;
@@ -46,43 +156,50 @@ li.round-icon {
     color: #FFF;
     background-color: #573d7d;
     background: transparent;
-
 }
 
 
 #GetStarted {
     color:#242c32;
-    background-color:white;
+    background: #1a7e73;
+    text-align: center;
+    width: 100%;
+    padding:30px 0;
+    margin: 0;
+    padding: 0;
+ 
 }
 
-#front-page-header {
-    background-image: url("http://en.clipdealer.com/preview/image/001/308/687/previews/5--1308687-Cheering%20Crowd%20Silhouettes%202.jpg");
-    background-position: 50% 80%;
-    background-repeat: no-repeat;
-    /* background-color: rgba(131, 25, 25, 0.28); */
-    background-size: 100%;
-    /* opacity: 0.5; */
-    margin-top: -20px;
-    height: 400px;
+#GetStarted .fontawesome {
+    margin:25px 0px;
+    color:#fff
+}
+#GetStarted p, #GetStarted h3, #GetStarted h2, #GetStarted a, #GetStarted
+h5 {
+   color:#fff;
+   }
+
+.works {
+    font-size:3em; 
+    margin-bottom:35px;
 }
 
 
-#registrationwizard {
-    width: 65%;
-}
 /** 
  * Custom theme Styles: Patrick + Saurabh 
  */
 
 h1, h2, a {color: #573d7d;}
-body {background: url('../icons/light_wool.png');}
+
+/*body {background: url('../icons/light_wool.png');}*/
+
 .tb-megamenu {
     background-color: transparent;
     }
 
 .container {
     width: 95%;
-    }
+}
     
 .region-sidebar-first {
     background: transparent;
@@ -172,9 +289,12 @@ li.media:hover .glyphicon, li.media.active-trail .glyphicon {
 .nav > li > a {
     padding: 10px!important;
 }
-.navbar {background:#f0efff;}
+/*.navbar {
+       background:#f0efff;
+    }*/
+
 div.navbar-collapse.collapse {
-    margin-top: -30px;
+    margin-top: 25px;
 }
 
 .footer {
@@ -185,13 +305,17 @@ div.navbar-collapse.collapse {
     border-top:10px solid;
     }
 
+#block-menu-menu-footer ul li.leaf {
+    display: inline-block;
+    list-style-type: none;
+}
 .footer a:link,.footer a:visited {
     color: #333;
     font-weight: bold;
     }
 
 .footer .nav > li > a:hover, .footer .nav > li > a:focus, .footer a:hover, .footer a:focus {
-    color: #E4E4E4;
+    color: #1A7E73;
     background-color: transparent;
     font-weight: bold;
     text-decoration: none;
@@ -201,18 +325,26 @@ div.navbar-collapse.collapse {
     background-color: #f0efff;
     color: #573d7d;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 0;
+    border-top: 1px ridge;
+/*    margin-top: 30px;*/
     }
     
 .item-list > ul:nth-child(1) {
     padding-left: 5px; 
     }
-.social-icons { padding-top:40px;}
+
+#twttr-sandbox-0{
+    vertical-align: top;
+}
+.social-icons { 
+    margin-top:0px;
+    }
+
 .social-icons img {
     background-color: #f0efff;
     padding: 10px;
-    margin-top: 20px;
-	border: 2px solid #573d7d;
+    border: 2px solid #573d7d;
     }
 .social-icons img:hover {
     background-color:#1a7e73;
@@ -221,6 +353,12 @@ div.navbar-collapse.collapse {
 .social-icons a {
     padding:25px;
     }
+
+.social-icons h3 {
+    text-align:center; 
+    color:#1a7e73;
+    }
+
 .e-entry-content {
     color: #d3d3d3;
 }
@@ -229,7 +367,7 @@ div.navbar-collapse.collapse {
     color:#1a7e73; 
     font-weight:bold;
 	background: url('../icons/blogger.png') no-repeat;
-padding: 20px 75px;
+    padding: 20px 75px;
     }
 
 .bloglist ul {
@@ -243,7 +381,10 @@ padding: 20px 75px;
     color:#1a7e73;
     }
 */    
-    
+
+.centered {
+    text-align: center;
+}
     /* Parallax for Get Started,  config elements as PHP code in the page */
 #intro{
 	background:url(../images/firstBG.jpg) 50% 0 no-repeat fixed;
@@ -287,13 +428,14 @@ padding: 20px 75px;
 	padding: 40px 0 0 0;
 }
 
-#getstarted {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    margin-top: -50px;
-}
+#Info .align-center {
+    margin-top: 0px;
+    }
 
+#Info .align-center h5 {
+    margin:0; 
+    padding:0;
+    }
 
 .cf-hidden { 
     display: none; 

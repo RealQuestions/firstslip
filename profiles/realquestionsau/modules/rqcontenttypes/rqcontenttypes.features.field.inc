@@ -95,14 +95,7 @@ function rqcontenttypes_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_question_nr',
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
+      'foreign keys' => array(),
       'indexes' => array(
         'nid' => array(
           0 => 'nid',
@@ -1569,10 +1562,13 @@ function rqcontenttypes_field_default_fields() {
         'profile2_private' => FALSE,
         'referenceable_roles' => array(
           2 => 0,
-          3 => '3',
+          3 => 0,
+          4 => '4',
+          5 => 0,
+          6 => 0,
         ),
         'referenceable_status' => array(
-          0 => '0',
+          0 => 0,
           1 => 0,
         ),
         'view' => array(
@@ -2055,10 +2051,13 @@ function rqcontenttypes_field_default_fields() {
         'profile2_private' => FALSE,
         'referenceable_roles' => array(
           2 => 0,
-          3 => '3',
+          3 => 0,
+          4 => '4',
+          5 => 0,
+          6 => 0,
         ),
         'referenceable_status' => array(
-          0 => '0',
+          0 => 0,
           1 => 0,
         ),
         'view' => array(
@@ -2418,10 +2417,13 @@ function rqcontenttypes_field_default_fields() {
         'profile2_private' => FALSE,
         'referenceable_roles' => array(
           2 => 0,
-          3 => '3',
+          3 => 0,
+          4 => '4',
+          5 => 0,
+          6 => 0,
         ),
         'referenceable_status' => array(
-          0 => '0',
+          0 => 0,
           1 => 0,
         ),
         'view' => array(
@@ -2445,12 +2447,6 @@ function rqcontenttypes_field_default_fields() {
           'settings' => array(),
           'type' => 'user_reference_default',
           'weight' => '0',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
         ),
       ),
       'ds_extras_field_template' => '',

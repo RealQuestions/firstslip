@@ -14,33 +14,41 @@ function quick_tabs_quicktabs_default_quicktabs() {
   $quicktabs->disabled = FALSE; /* Edit this to true to make a default quicktabs disabled initially */
   $quicktabs->api_version = 1;
   $quicktabs->machine_name = 'my_questions';
-  $quicktabs->ajax = 0;
+  $quicktabs->ajax = 1;
   $quicktabs->hide_empty_tabs = FALSE;
   $quicktabs->default_tab = 0;
   $quicktabs->title = 'My Questions';
   $quicktabs->tabs = array(
     0 => array(
-      'bid' => 'views_delta_my_questions-block_2',
+      'bid' => 'views_delta_my_questions-block',
       'hide_title' => 1,
       'title' => 'Questions asked to me',
       'weight' => '-100',
       'type' => 'block',
     ),
     1 => array(
-      'vid' => 'draftanswers',
-      'display' => 'page',
+      'vid' => 'politician_ansmoderation',
+      'display' => 'needs_review_page',
       'args' => '',
       'title' => 'Draft Answers',
       'weight' => '-99',
       'type' => 'view',
     ),
+    2 => array(
+      'bid' => 'views_delta_my_questions-block_1',
+      'hide_title' => 1,
+      'title' => 'Answered Questions',
+      'weight' => '-98',
+      'type' => 'block',
+    ),
   );
   $quicktabs->renderer = 'quicktabs';
-  $quicktabs->style = 'Navlist';
+  $quicktabs->style = 'default';
   $quicktabs->options = array();
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Answered Questions');
   t('Draft Answers');
   t('My Questions');
   t('Questions asked to me');
