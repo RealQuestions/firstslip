@@ -1,5 +1,6 @@
-$(document).ready(function() {
-
+(function($) {
+Drupal.behaviors.rqscroller = {
+  attach: function (context, settings) {
 	/*============================================
 	Navigation Functions
 	==============================================*/
@@ -169,7 +170,7 @@ $(document).ready(function() {
 	var tweetsLength = $('#twitter-slider').data('tweets-length'),
 		widgetID = $('#twitter-slider').data('widget-id');
 	
-	twitterFetcher.fetch(widgetID, 'twitter-slider', tweetsLength, true, false, true, '', false, handleTweets);
+	//twitterFetcher.fetch(widgetID, 'twitter-slider', tweetsLength, true, false, true, '', false, handleTweets);
 
 	function handleTweets(tweets){
 	
@@ -273,4 +274,6 @@ $(document).ready(function() {
 		},1000);
 	}
 
-});	
+  }
+};
+})(jQuery);
