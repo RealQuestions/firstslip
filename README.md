@@ -1,9 +1,12 @@
-firstslip
-=========
 Welcome to the RealQuestions codebase
 
-
 'FirstSlip' Code base. Excited to release this, looking forward to hearing from everyone.  These intial releases will be named after cricket fielding positions.
+
+NOTE:
+----
+there are currently two main branches, Master and Develop. The Master code base is what our site runs. 
+As is normal practise, fork & send pull requests to this one preferably, since we clone this onto our development & testing servers first.
+
 
 This needs Drupal 7, with features. The codebase adds on features and custom modules. You can use drush and make to get started quickly.
 
