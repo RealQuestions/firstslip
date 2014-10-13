@@ -15,7 +15,7 @@ class rqWorkflow extends StateFlow {
     ));
 
     $this->create_event('submit_for_review', array(
-      'label' => t('Submit for review'),
+      'label' => t('Still Needs Work'),
       'origin' => 'draft',
       'target' => 'approved',
     ));
