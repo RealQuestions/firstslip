@@ -2,5 +2,6 @@
 
 function realquestionsau_install() {
     theme_enable(array('bootstrap'));
-    variable_set('theme_default', 'bootstrap');
+    theme_enable(array('realquestions'));
+    variable_set('theme_default', 'realquestions');
 }
