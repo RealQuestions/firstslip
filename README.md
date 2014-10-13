@@ -1,3 +1,4 @@
+INTRO:
 Welcome to the RealQuestions codebase
 
 'FirstSlip' Code base. Excited to release this, looking forward to hearing from everyone.  These intial releases will be named after cricket fielding positions.
@@ -32,17 +33,11 @@ Enter the "firstslip" directory and run
 drush make profiles/realquestionsau/build-realquestionsau.make
 ```
 
-
 Then all you need to do is visit the drupal site via your browser and choose "RealQuestions Australia". Follow the rest of the instructions to install the site. This leaves the bootstap theme enabled as default. We have also provided the RealQuestions theme (a subtheme of bootstrap)
 
 
-This is structured to allow future codebases, newer releases of Drupal, and other ports to other frameworks.
-
-Docs:
-this contains the core docs releated to getting started and everything related to the code, cucustom modules, features it takes to build and run this code. 
-
-Drupal7: this contains all the custom modules, features module exports that are needed to be applied oyto any Drupal7 framework to get the  code running.
-
+Handy Developer Tips:
+we often use "drush si realquestionsau" to quickly blow away the database and resetup the install profile to a clean slate. Very useful during development.
 
 While we get things in place... a quick run down. If you cant wait to get up & running, ping me/ one of the RealQuestions Team at www.realquestions.net.au
 
