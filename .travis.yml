@@ -8,13 +8,13 @@ branches:
     - develop 
 
 before_script:
-    - "mysql -e 'create database drupal;'"
+    - "mysql -e 'create database rqdevelop;'"
     - pear channel-discover pear.drush.org
     - pear install drush/drush
     - phpenv rehash
     - drush make profiles/realquestionsau/build-realquestionsau.make -y
     - sudo chmod -R 777 sites/all/modules
-    - drush si realquestionsau --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=rqau@2014 --site-mail=admin@realquestions.net.au --site-name="RealQuestionsAU" --yes
+    - drush si realquestionsau --db-url=mysql://root:@127.0.0.1/rqdevelop --account-name=admin --account-pass=rqau@2014 --account-mail=admin@realquestions.net.au --site-mail=team@realquestions.net.au --site-name="RealQuestionsAU"  install_configure_form.update_status_module='array(FALSE,FALSE)' --yes
     - drush en --yes simpletest
     - drush runserver --server=builtin 8080 &
     - sleep 4
