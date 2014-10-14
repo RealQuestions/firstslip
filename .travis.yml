@@ -20,8 +20,9 @@ before_script:
     - sleep 4
     - drush vset --yes simpletest_verbose FALSE    
     - drush cc all --yes
+    
        
-  script:
+script:
     - drush test-run Syslog --xml --uri=127.0.0.1:8080
 
 notifications:
