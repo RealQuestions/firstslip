@@ -1,0 +1,33 @@
+language: php
+
+php:
+  -"5.3"
+  -"5.4"
+   
+branches:
+  only:
+    - develop 
+
+before_script:
+    - "mysql -e 'create database drupal;'"
+    - pear channel-discover pear.drush.org
+    - pear install drush/drush
+    - phpenv rehash
+    - drush make profiles/realquestionsau/build-realquestionsau.make
+    - sudo chmod -R 777 sites/all/modules
+    - drush si realquestionsau --db-url=mysql://root:@127.0.0.1/drupal --account-name=admin --account-pass=rqau@2014 --site-mail=admin@realquestions.net.au --site-name="RealQuestionsAU" --yes
+    - drush en --yes simpletest
+    - drush runserver --server=builtin 8080 &
+    - sleep 4
+    - drush vset --yes simpletest_verbose FALSE    
+    - drush cc all --yes
+       
+  script:
+    - drush test-run Syslog --xml --uri=127.0.0.1:8080
+
+notifications:
+  email:
+    recipients:
+      - admin@realquestions.net.au
+    on_success: change
+    on_failure: always
